@@ -5,5 +5,7 @@
 </head>
 <body>
    <h2>${message}</h2>
+   <a href="/login">Login</a>
+   <a href="/accountSummary">AccountSummary</a>
 </body>
 </html>

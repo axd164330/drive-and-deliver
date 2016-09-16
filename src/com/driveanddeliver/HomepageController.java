@@ -9,14 +9,26 @@ import org.springframework.ui.ModelMap;
  *
  */
 @Controller
-@RequestMapping("/")
-public class WelcomeController{
+public class HomepageController{
  
-   @RequestMapping(method = RequestMethod.GET)
+   @RequestMapping(value="/",method = RequestMethod.GET)
    public String printHello(ModelMap model) {
       model.addAttribute("message", "Welcome to Drive and Deliver");
 
       return "index";
+   }
+   
+   @RequestMapping(value="/login", method =RequestMethod.GET)
+   public String login(ModelMap model){
+	   
+	   return "login";
+   }
+   
+   @RequestMapping(value="/accountSummary",method=RequestMethod.GET)
+   public String getAccountDetails(ModelMap model){
+	   
+	   
+	   return "account";
    }
 
 }
