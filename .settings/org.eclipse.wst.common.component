@@ -2,7 +2,7 @@
     <wb-module deploy-name="DriveAndDeliver">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="DriveAndDeliver"/>
         <property name="java-output-path" value="/DriveAndDeliver/build/classes"/>
+        <property name="context-root" value="/"/>
     </wb-module>
 </project-modules>

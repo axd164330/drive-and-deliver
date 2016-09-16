@@ -6,8 +6,12 @@
 
    <display-name>Spring MVC Application</display-name>
 
+   <welcome-file-list>
+   	  <welcome-file>hello.jsp</welcome-file>
+   </welcome-file-list>
+
    <servlet>
-      <servlet-name>DriveAndDeliver</servlet-name>
+      <servlet-name>drive</servlet-name>
       <servlet-class>
          org.springframework.web.servlet.DispatcherServlet
       </servlet-class>
@@ -15,8 +19,9 @@
    </servlet>
 
    <servlet-mapping>
-      <servlet-name>DriveAndDeliver</servlet-name>      
+      <servlet-name>drive</servlet-name>      
       <url-pattern>/</url-pattern>
    </servlet-mapping>
+  
  
 </web-app>
