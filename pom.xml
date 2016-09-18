@@ -4,12 +4,56 @@
   <artifactId>DriveAndDeliver</artifactId>
   <version>1</version>
   <packaging>war</packaging>
+  <properties>
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
+		<spring.framework.version>3.2.0.RELEASE</spring.framework.version>
+		<hibernate.version>4.1.9.Final</hibernate.version>
+		<sl4j.version>1.7.2</sl4j.version>
+		<junit.version>4.11</junit.version>
+		<hsqldb.version>2.2.9</hsqldb.version>
+  </properties>
   <dependencies>
-  <dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-webmvc</artifactId>
-    <version>3.1.1.RELEASE</version>
-  </dependency>
+	<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-webmvc</artifactId>
+		  <version>3.1.1.RELEASE</version>
+	</dependency> 
+	<dependency>
+    	<groupId>org.springframework</groupId>
+   		<artifactId>spring-context</artifactId>
+    	<version>3.1.1.RELEASE</version>
+	</dependency> 
+	<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+	</dependency>
+	<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jcl</artifactId>
+			<version>${sl4j.version}</version>
+	</dependency>
+	<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${sl4j.version}</version>
+	</dependency>
+	<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+			<scope>runtime</scope>
+	</dependency>
+	<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+	</dependency>
+	<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+	</dependency>	
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
