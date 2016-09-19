@@ -6,10 +6,10 @@ import org.hibernate.Transaction;
 
 import com.driveanddeliver.model.User;
 
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
-	private SessionFactory sessionFactory;	
-	
+	private SessionFactory sessionFactory;
+
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -17,13 +17,13 @@ public class UserDAOImpl implements UserDAO{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Override
 	public void save(User user) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(user);
-		
+
 		tx.commit();
 		session.close();
 	}
