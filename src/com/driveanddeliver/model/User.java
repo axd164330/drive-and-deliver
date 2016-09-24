@@ -1,23 +1,44 @@
 package com.driveanddeliver.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Amandeep Singh Dhammu
+ *
+ */
+
 @Entity
-@Table(name="User")
+@Table(name = "user")
 public class User {
 
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	@GeneratedValue
 	private int id;
-	
+
+	@Column(name = "name")
 	private String name;
-	
+
+	@Column(name = "email_id")
+	private String emailId;
+
+	@Column(name = "type_of_user")
+	private String typeOfUser;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Address> addresses;
+
+	@Column(name = "country")
 	private String country;
 
 	public int getId() {
@@ -26,6 +47,14 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	public String getName() {
@@ -43,7 +72,21 @@ public class User {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	public String getTypeOfUser() {
+		return typeOfUser;
+	}
+
+	public void setTypeOfUser(String typeOfUser) {
+		this.typeOfUser = typeOfUser;
+	}
 	
-	
-	
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
 }

@@ -11,6 +11,7 @@ public class UserDAOImpl implements UserDAO {
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
+		
 		return sessionFactory;
 	}
 
@@ -23,7 +24,7 @@ public class UserDAOImpl implements UserDAO {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(user);
-
+		
 		tx.commit();
 		session.close();
 	}
