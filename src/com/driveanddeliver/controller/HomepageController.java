@@ -54,14 +54,14 @@ public class HomepageController {
 		user.setEmailId("asdhammu@gmail.com");
 		user.setTypeOfUser("driver");
 		
-		Address address = new Address();
+		Address address = new Address(user);
 		address.setAddress1("test1");
 		address.setAddress2("test2");
 		address.setCity("Dallas");
 		address.setPhoneNo("1234");
 		address.setPoBox("123");
 		
-		Address address2 = new Address();
+		Address address2 = new Address(user);
 		address2.setAddress1("test1");
 		address2.setAddress2("test2");
 		address2.setCity("Dallas");
@@ -70,6 +70,7 @@ public class HomepageController {
 		
 		
 		List<Address> addresses = new ArrayList<Address>(); 
+		
 		
 		addresses.add(address);
 		addresses.add(address2);

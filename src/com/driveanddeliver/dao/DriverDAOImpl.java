@@ -1,6 +1,5 @@
 package com.driveanddeliver.dao;
 
-import java.util.List;
 
 import com.driveanddeliver.model.Driver;
 

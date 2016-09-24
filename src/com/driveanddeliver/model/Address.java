@@ -3,7 +3,6 @@ package com.driveanddeliver.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -43,6 +42,10 @@ public class Address {
 	@ManyToOne
 	@JoinColumn(name="address_user_id")
 	private User user;
+	
+	public Address(User user) {
+		this.user = user;
+	}
 	
 	public User getUser() {
 		return user;
