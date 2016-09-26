@@ -5,26 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Account Summary</title>
+<title>Trip Details</title>
 </head>
+<body>
 
 <a href="/">Back to Home</a>
-<body>
+
 <div align="center">
-<h1>Account Summary Page</h1>
-<br/>
 
-<a href="/addtrip?emailId=${driver.emailId}">Add Trip</a>
+<h2>Trip Details</h2>
 
-<a href="/triphistory?emailId=${driver.emailId}">Trip History</a>
-<br/>
- First Name: ${driver.name}
-<br/>
-Country: ${driver.country}
-<br/>
-Addresses:  <br/>
-<br/>
-<c:forEach var="addressList" items="${driver.addresses}">
+
+TIME for trip : ${tripDetails.timeOfTravel}
+
+
+<c:forEach var="addressList" items="${tripDetails.address}">
+	<h4>${addressList.typeOfAddress} Address </h4>
 	Street 1 : ${addressList.address1} <br/>
 	Street 2 : ${addressList.address2} <br/>
 	
@@ -33,7 +29,11 @@ Addresses:  <br/>
 	pin code : ${addressList.poBox} <br/>
 	<br/>
 </c:forEach>
- 
+
+<h3> Car Details </h3>
+Make : ${tripDetails.car.make}
+Model : ${tripDetails.car.model}
+Car Number : ${tripDetails.car.carNumber}
 
 </div>
 

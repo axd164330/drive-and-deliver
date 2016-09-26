@@ -34,11 +34,22 @@ public class User {
 	@Column(name = "type_of_user")
 	private String typeOfUser;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Address> addresses;
-
 	@Column(name = "country")
 	private String country;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Address> addresses;
+	
+	@OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+	private List<Trip> trips;	
+	
+	public List<Trip> getTrips() {
+		return trips;
+	}
+
+	public void setTrips(List<Trip> trips) {
+		this.trips = trips;
+	}
 
 	public int getId() {
 		return id;

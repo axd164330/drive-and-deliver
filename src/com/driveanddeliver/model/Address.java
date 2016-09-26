@@ -36,15 +36,30 @@ public class Address {
 	private String phoneNo;
 	
 	@Column(name="pin_code")
-	private String poBox;
+	private String poBox;	
 	
+	@Column(name="type_of_Address")
+	private String typeOfAddress;
 	
 	@ManyToOne
 	@JoinColumn(name="address_user_id")
 	private User user;
 	
-	public Address(User user) {
+	@ManyToOne
+	@JoinColumn(name="trip_address_id")
+	private Trip trip;
+	
+	public Address() {
+		
+	}
+	
+	public Address(User user){
 		this.user = user;
+	}
+	
+	public Address(User user,Trip trip) {
+		this.user = user;		
+		this.trip = trip;		
 	}
 	
 	public User getUser() {
@@ -102,5 +117,22 @@ public class Address {
 	public void setPoBox(String poBox) {
 		this.poBox = poBox;
 	}
+
+	public String getTypeOfAddress() {
+		return typeOfAddress;
+	}
+
+	public void setTypeOfAddress(String typeOfAddress) {
+		this.typeOfAddress = typeOfAddress;
+	}
+
+	public Trip getTrip() {
+		return trip;
+	}
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+	
 
 }

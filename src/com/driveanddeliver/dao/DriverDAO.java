@@ -1,10 +1,9 @@
 package com.driveanddeliver.dao;
 
-
-import com.driveanddeliver.model.Driver;
+import com.driveanddeliver.model.User;
 
 public interface DriverDAO extends UserDAO   {
 
-	public Driver getDriverDetails(String email);
+	public User getDriverDetails(String email);
 	
 }

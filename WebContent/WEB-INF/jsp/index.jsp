@@ -6,6 +6,6 @@
 <body>
    <h2>${message}</h2>
    <a href="/login">Login</a>
-   <a href="/accountSummary">AccountSummary</a>
+   <a href="/accountsummary?emailId=asdhammu@gmail.com">AccountSummary</a>
 </body>
 </html>

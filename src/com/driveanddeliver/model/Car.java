@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -33,6 +35,32 @@ public class Car {
 	@Column(name="trunk_area")
 	private String trunkArea;
 	
+	//private User user;
+	
+	@OneToOne
+	@JoinColumn(name="trip_car_id")
+	private Trip trip;
+	
+	public Car() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Car(Trip trip) {
+		this.trip = trip;
+	}
+	public Trip getTrip() {
+		return trip;
+	}
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+	
+	/*public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}*/
 	public int getId() {
 		return id;
 	}

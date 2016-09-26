@@ -1,10 +1,10 @@
 package com.driveanddeliver.service;
 
 
-import com.driveanddeliver.model.Driver;
+import com.driveanddeliver.model.User;
 
 public interface DriverService extends UserService {
 
-	public Driver getDriverDetails(String email);
+	public User getDriverDetails(String email);
 	
 }

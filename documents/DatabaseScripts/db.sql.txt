@@ -1,13 +1,36 @@
 
 CREATE DATABASE `drive_deliver` /*!40100 DEFAULT CHARACTER SET utf8 */;
 CREATE TABLE `drive_deliver`.`user` (
-  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
   `name` varchar(20) NOT NULL DEFAULT '',
   `country` varchar(20) DEFAULT NULL,
   `type_of_user` varchar(45) DEFAULT NULL,
-  `email_id` varchar(45) NOT NULL,
+  `email_id` varchar(45) NOT NULL unique,
   PRIMARY KEY (`user_id`,`email_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `trip` (
+	`trip_id` int(11) unsigned NOT NULL,
+	`time_of_travel` date,
+	`trip_user_id` int(11) unsigned default null,
+    PRIMARY KEY (`trip_id`),
+	KEY `fk_trip_user_idx` (`trip_user_id`),
+	CONSTRAINT `fk_trip_userid` FOREIGN KEY (`trip_user_id`) REFERENCES `user`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+	
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `car` (
+  `car_id` int(11) NOT NULL AUTO_INCREMENT,
+  `make` varchar(45) DEFAULT NULL,
+  `model` varchar(45) DEFAULT NULL,
+  `car_number` varchar(45) DEFAULT NULL,
+  `trunk_area` varchar(45) DEFAULT NULL, 
+  `trip_car_id` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`car_id`),
+  KEY `fk_trip_car_idx` (`trip_car_id`),
+  CONSTRAINT `fk_trip_carid` FOREIGN KEY (`trip_car_id`) REFERENCES `trip`(`trip_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE `drive_deliver`.`address` (
@@ -15,20 +38,16 @@ CREATE TABLE `drive_deliver`.`address` (
   `address1` varchar(45) DEFAULT NULL,
   `address2` varchar(45) DEFAULT NULL,
   `city` varchar(45) DEFAULT NULL,
-  `phone_number` varchar(45) DEFAULT NULL,
   `pin_code` varchar(45) DEFAULT NULL,
+  `phone_number` varchar(45) DEFAULT NULL,
+  `type_of_address` varchar(45) DEFAULT NULL,
   `address_user_id` int(11) unsigned DEFAULT NULL,
-  PRIMARY KEY (`address_id`),
+  `trip_address_id` int(11) unsigned DEFAULT NULL,
+   PRIMARY KEY (`address_id`),
   KEY `fk_address_user_idx` (`address_user_id`),
-  CONSTRAINT `fk_address_userid` FOREIGN KEY (`address_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_trip_address_idx` (`trip_address_id`),
+  CONSTRAINT `fk_address_userid` FOREIGN KEY (`address_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_trip_addressid` FOREIGN KEY (`trip_address_id`) REFERENCES `trip` (`trip_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-show create table user;
 
-CREATE TABLE `car` (
-  `car_id` int(11) NOT NULL AUTO_INCREMENT,
-  `make` varchar(45) DEFAULT NULL,
-  `model` varchar(45) DEFAULT NULL,
-  `car_number` varchar(45) DEFAULT NULL,
-  `trunk_area` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`car_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+commit;

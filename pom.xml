@@ -13,6 +13,11 @@
 		<hsqldb.version>2.2.9</hsqldb.version>
   </properties>
   <dependencies>
+  	<dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>jstl</artifactId>
+    	<version>1.2</version>
+	</dependency>
 	<dependency>
 		  <groupId>org.springframework</groupId>
 		  <artifactId>spring-webmvc</artifactId>

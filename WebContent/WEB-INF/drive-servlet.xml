@@ -29,6 +29,9 @@
 			<beans:list>
 				<beans:value>com.driveanddeliver.model.User</beans:value>
 				<beans:value>com.driveanddeliver.model.Address</beans:value>
+				<beans:value>com.driveanddeliver.model.Driver</beans:value>
+				<beans:value>com.driveanddeliver.model.Trip</beans:value>
+				<beans:value>com.driveanddeliver.model.Car</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -47,6 +50,23 @@
 	<beans:bean id="userService" class="com.driveanddeliver.service.UserServiceImpl">
 		<beans:property name="userDAO" ref="userDAO"></beans:property>
 	</beans:bean>
+	
+	<beans:bean id="driverDAO" class="com.driveanddeliver.dao.DriverDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="driverService" class="com.driveanddeliver.service.DriverServiceImpl">
+		<beans:property name="driverDAO" ref="driverDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="tripDAO" class="com.driveanddeliver.dao.TripDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="tripService" class="com.driveanddeliver.service.TripServiceImpl">
+		<beans:property name="tripDAO" ref="tripDAO"></beans:property>
+	</beans:bean>
+	
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	

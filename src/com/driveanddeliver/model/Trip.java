@@ -1,12 +1,19 @@
 package com.driveanddeliver.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,15 +29,41 @@ public class Trip {
 	@Id
 	@Column(name="trip_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int id;	
 	
-	private Address startPoint;
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="trip", cascade = CascadeType.ALL)
+	private List<Address> address;
 	
-	private Address endPoint;
+	@Column(name="time_of_travel")
+	private Date timeOfTravel;	
 	
-	private Date  timeOfTravel;
-	
+	@OneToOne(mappedBy="trip",cascade = CascadeType.ALL)
 	private Car car;
+	
+	@ManyToOne
+	@JoinColumn(name="trip_user_id")
+	private User user;
+	
+	public Trip() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Trip(User user) {
+		this.user = user;
+	}
+	
+	public Trip(User user,Car car) {
+		this.user = user;
+		this.car = car;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	public int getId() {
 		return id;
@@ -38,22 +71,6 @@ public class Trip {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Address getStartPoint() {
-		return startPoint;
-	}
-
-	public void setStartPoint(Address startPoint) {
-		this.startPoint = startPoint;
-	}
-
-	public Address getEndPoint() {
-		return endPoint;
-	}
-
-	public void setEndPoint(Address endPoint) {
-		this.endPoint = endPoint;
 	}
 
 	public Date getTimeOfTravel() {
@@ -71,7 +88,14 @@ public class Trip {
 	public void setCar(Car car) {
 		this.car = car;
 	}
-	
+
+	public List<Address> getAddress() {
+		return address;
+	}
+
+	public void setAddress(List<Address> address) {
+		this.address = address;
+	}
 	
 	
 }

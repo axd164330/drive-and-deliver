@@ -1,7 +1,7 @@
 package com.driveanddeliver.service;
 
 import com.driveanddeliver.dao.DriverDAO;
-import com.driveanddeliver.model.Driver;
+import com.driveanddeliver.model.User;
 
 public class DriverServiceImpl extends UserServiceImpl implements DriverService {
 
@@ -16,7 +16,7 @@ public class DriverServiceImpl extends UserServiceImpl implements DriverService 
 	}
 
 	@Override
-	public Driver getDriverDetails(String email) {
+	public User getDriverDetails(String email) {
 
 		return this.driverDAO.getDriverDetails(email);
 	}
