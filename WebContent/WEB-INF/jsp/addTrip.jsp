@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<a href="/">Back to Home</a>
+<a href="${contextPath}/">Back to Home</a>
 
 <div align="center">
         <form:form action="addtripdetails" method="post" commandName="tripForm">

@@ -8,15 +8,15 @@
 <title>Account Summary</title>
 </head>
 
-<a href="/">Back to Home</a>
+<a href="${contextPath}/">Back to Home</a>
 <body>
 <div align="center">
 <h1>Account Summary Page</h1>
 <br/>
 
-<a href="/addtrip?emailId=${driver.emailId}">Add Trip</a>
+<a href="${contextPath}/addtrip?emailId=${driver.emailId}">Add Trip</a>
 
-<a href="/triphistory?emailId=${driver.emailId}">Trip History</a>
+<a href="${contextPath}/triphistory?emailId=${driver.emailId}">Trip History</a>
 <br/>
  First Name: ${driver.name}
 <br/>

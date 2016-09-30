@@ -4,8 +4,9 @@
 <title>Drive and Deliver</title>
 </head>
 <body>
+	context path : ${contextPath}
    <h2>${message}</h2>
-   <a href="/login">Login</a>
-   <a href="/accountsummary?emailId=asdhammu@gmail.com">AccountSummary</a>
+   <a href="${contextPath}/login">Login</a>
+   <a href="${contextPath}/accountsummary?emailId=asdhammu@gmail.com">AccountSummary</a>
 </body>
 </html>
