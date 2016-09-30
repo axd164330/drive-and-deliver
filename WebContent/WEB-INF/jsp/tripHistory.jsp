@@ -9,13 +9,13 @@
 </head>
 <body>
 
-<a href="/">Back to Home</a>
+<a href="${contextPath}/">Back to Home</a>
 <div align="center">
 <h2>Trip History</h2>
 
 <c:forEach var="trip" items="${trips}">
 
-	<h3><a href="/tripDetails?id=${trip.id}">Trip ID : ${trip.id}</a> Trip Date: ${trip.timeOfTravel}  </h3>
+	<h3><a href="${contextPath}/tripDetails?id=${trip.id}">Trip ID : ${trip.id}</a> Trip Date: ${trip.timeOfTravel}  </h3>
 
 </c:forEach>
 </div>

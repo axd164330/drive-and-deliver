@@ -7,7 +7,7 @@
 <title>Trip Success</title>
 </head>
 
-<a href="/">Back to Home</a>
+<a href="${contextPath}/">Back to Home</a>
 <body>
     <div align="center">
         <table border="0">

@@ -7,6 +7,7 @@
 <title>Login Page</title>
 </head>
 <body>
+<a href="${contextPath}/">Back to Home</a>
 Login Page
 </body>
 </html>
