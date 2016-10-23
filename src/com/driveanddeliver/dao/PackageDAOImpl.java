@@ -83,7 +83,7 @@ public class PackageDAOImpl implements PackageDAO{
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		
-		String queryString = "from Package where package_id=:id";
+		String queryString = "from MyPackage where package_id=:id";
 		Query query = session.createQuery(queryString);
 		query.setInteger("id", id); 
 		Object object = query.uniqueResult();
