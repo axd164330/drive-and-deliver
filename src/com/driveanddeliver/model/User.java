@@ -41,7 +41,10 @@ public class User {
 	private List<Address> addresses;
 	
 	@OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
-	private List<Trip> trips;	
+	private List<Trip> trips;
+	
+	@OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+	private List<MyPackage> packages;
 	
 	public List<Trip> getTrips() {
 		return trips;
@@ -98,5 +101,15 @@ public class User {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
+
+	public List<MyPackage> getPackages() {
+		return packages;
+	}
+
+	public void setPackages(List<MyPackage> packages) {
+		this.packages = packages;
+	}
+	
+	
 
 }

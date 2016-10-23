@@ -14,17 +14,17 @@
 <h1>Account Summary Page</h1>
 <br/>
 
-<a href="${contextPath}/addtrip?emailId=${driver.emailId}">Add Trip</a>
+<a href="${contextPath}/addPackage?emailId=${user.emailId}">Send Package</a>
 
-<a href="${contextPath}/triphistory?emailId=${driver.emailId}">Trip History</a>
+<a href="${contextPath}/packagehistory?emailId=${user.emailId}">Package History</a>
 <br/>
- First Name: ${driver.name}
+ First Name: ${user.name}
 <br/>
-Country: ${driver.country}
+Country: ${user.country}
 <br/>
 Addresses:  <br/>
 <br/>
-<c:forEach var="addressList" items="${driver.addresses}">
+<c:forEach var="addressList" items="${user.addresses}">
 	Street 1 : ${addressList.address1} <br/>
 	Street 2 : ${addressList.address2} <br/>
 	

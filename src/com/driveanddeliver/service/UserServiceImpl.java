@@ -20,4 +20,10 @@ public class UserServiceImpl implements UserService{
 		this.userDAO.save(user);
 	}
 
+	@Override
+	public User getUserDetails(String emailId) {
+		return this.userDAO.getUserDetails(emailId);
+		
+	}
+
 }
