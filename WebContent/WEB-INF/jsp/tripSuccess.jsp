@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <h3>Thank you for registering! Here's the review of your details:</h3>
+                    <h3>Thank you for registering!</h3>
                 </td>
             </tr>
             <%-- <tr>

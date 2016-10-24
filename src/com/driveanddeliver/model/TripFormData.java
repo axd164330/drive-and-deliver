@@ -5,7 +5,9 @@ import java.util.Date;
 public class TripFormData {
 
 	private String emailId;
+	private int id;
 	private Date dateOfTrip;
+	private String dateOfTripS;
 	private String startTripStreet1;
 	private String startTripStreet2;
 	private String startTripCity;
@@ -19,6 +21,22 @@ public class TripFormData {
 	private String carNumber;
 	private String carMake;
 	private String carModel;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDateOfTripS() {
+		return dateOfTripS;
+	}
+
+	public void setDateOfTripS(String dateOfTripS) {
+		this.dateOfTripS = dateOfTripS;
+	}
 
 	public String getCarNumber() {
 		return carNumber;

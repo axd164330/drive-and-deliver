@@ -21,22 +21,22 @@ public class TripController extends HomepageController {
 	private UserService userService;
 
 	private TripService tripService;
-	
+
 	@Autowired(required = true)
 	@Qualifier(value = "tripService")
 	public void setTripService(TripService tripService) {
 		this.tripService = tripService;
 	}
-	
+
 	public TripService getTripService() {
 		return tripService;
 	}
-	
-	@Autowired(required = true)	  
-	@Qualifier(value = "userService") public void setUserService(UserService userService) {
-	    this.userService = userService;
+
+	@Autowired(required = true)
+	@Qualifier(value = "userService")
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
-	
 
 	@RequestMapping(value = "/addtrip", method = RequestMethod.GET)
 	public String addTrip(@RequestParam(value = "emailId", required = true) String emailId, ModelMap map) {
@@ -59,6 +59,18 @@ public class TripController extends HomepageController {
 
 		return "tripSuccess";
 	}
+	
+	//added by Pradeep edittripdetails
+	
+	@RequestMapping(value = "/edittripdetails", method = RequestMethod.POST)
+	public String editTripDetails(@ModelAttribute("tripDetails") TripFormData trip, ModelMap map) {
+		map.put("Trip", trip);
+		map.put("contextPath", this.getContextPath());
+		
+		this.tripService.updateTripDetails(trip);
+
+		return "editTripSuccess";
+	}
 
 	@RequestMapping(value = "/triphistory", method = RequestMethod.GET)
 	public String getTripHistory(@RequestParam(value = "emailId", required = true) String emailId, ModelMap map) {
@@ -70,12 +82,29 @@ public class TripController extends HomepageController {
 		return "tripHistory";
 	}
 
-	@RequestMapping(value = "/tripDetails", method = RequestMethod.GET)
-	public String getTripDetails(@RequestParam(value = "id", required = true) String id, ModelMap map) {
+	@RequestMapping(value = { "/tripDetails", "/edittrip" }, method = RequestMethod.GET)
+	public String getTripDetails(@RequestParam(value = "id", required = true) String id,
+			@RequestParam(value = "e", required = true) String edit, ModelMap map) {
 		map.put("contextPath", this.getContextPath());
 		map.put("tripDetails", (Trip) this.getTripService().getTripDetails(Integer.parseInt(id)));
-
-		return "tripDetails";
+		if (edit.equalsIgnoreCase("true")) {
+			TripFormData loadedTripForm = new TripFormData();
+			loadedTripForm = this.getTripService().loadTripFormData((Trip)map.get("tripDetails"));
+			map.put("tripID", id);
+			map.put("loadedTripForm", loadedTripForm);
+			return "editTrip";
+		} else {
+			return "tripDetails";
+		}
 	}
-	
+
+	// added by Pradeep deleteTrip
+	@RequestMapping(value = "/deleteTrip", method = RequestMethod.GET)
+	public String deleteTrip(@RequestParam(value = "id", required = true) String id, ModelMap map) {
+		map.put("contextPath", this.getContextPath());
+		this.tripService.deleteTrip(Integer.parseInt(id));
+
+		return "deleteSuccess";
+	}
+
 }

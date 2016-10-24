@@ -9,7 +9,7 @@
 </head>
 <body>
 
-Context Path : ${contextPath}
+
 
 <a href="${contextPath}/">Back to Home</a>
 <div align="center">
@@ -17,7 +17,7 @@ Context Path : ${contextPath}
 
 <c:forEach var="packages" items="${packages}">
 
-	<h3><a href="${contextPath}/packageDetails?id=${packages.id}">Trip ID : ${packages.id}</a> Trip Date: ${packages.pickupDate}  </h3>
+	<h3><a href="${contextPath}/packageDetails?id=${packages.id}">Package ID : ${packages.id}</a> Package Date: ${packages.pickupDate}  </h3>
 
 </c:forEach>
 </div>

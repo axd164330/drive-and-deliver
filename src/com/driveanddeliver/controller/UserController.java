@@ -16,7 +16,7 @@ public class UserController extends HomepageController {
 
 	
 	private UserService userService;
-
+		
 	@Autowired(required = true)	  
 	@Qualifier(value = "userService") public void setUserService(UserService userService) {
 	    this.userService = userService;
