@@ -9,9 +9,8 @@ CREATE TABLE `drive_deliver`.`user` (
   PRIMARY KEY (`user_id`,`email_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-CREATE TABLE `drive_deliver`.`trip` (
-	`trip_id` int(11) unsigned NOT NULL AUTO_INCREMENT ,
+CREATE TABLE `trip` (
+	`trip_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	`time_of_travel` date,
 	`trip_user_id` int(11) unsigned default null,
     PRIMARY KEY (`trip_id`),
