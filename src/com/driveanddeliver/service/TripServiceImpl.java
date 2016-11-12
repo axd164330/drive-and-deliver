@@ -27,4 +27,24 @@ public class TripServiceImpl implements TripService {
 		return this.tripDAO.getTripDetails(id);
 	}
 
+	//added by Pradeep
+	@Override
+	public void deleteTrip(int id) {
+		// TODO Auto-generated method stub
+		this.tripDAO.deleteTrip(id);
+	}
+
+	@Override
+	public TripFormData loadTripFormData(Trip trip) {
+		// TODO Auto-generated method stub
+		return this.tripDAO.loadTripFormDetails(trip);
+	}
+
+	@Override
+	public void updateTripDetails(TripFormData trip) {
+		// TODO Auto-generated method stub
+		this.tripDAO.updateTripDetails(trip);
+	}
+	
+
 }

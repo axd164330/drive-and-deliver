@@ -2,12 +2,9 @@ package com.driveanddeliver.model;
 
 import java.util.Date;
 
-public class TripFormData {
-
+public class PackageFormData {
 	private String emailId;
-	private int id;
 	private Date dateOfTrip;
-	private String dateOfTripS;
 	private String startTripStreet1;
 	private String startTripStreet2;
 	private String startTripCity;
@@ -18,49 +15,9 @@ public class TripFormData {
 	private String endTripCity;
 	private String endTripPhone;
 	private String endTripPin;
-	private String carNumber;
-	private String carMake;
-	private String carModel;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getDateOfTripS() {
-		return dateOfTripS;
-	}
-
-	public void setDateOfTripS(String dateOfTripS) {
-		this.dateOfTripS = dateOfTripS;
-	}
-
-	public String getCarNumber() {
-		return carNumber;
-	}
-
-	public void setCarNumber(String carNumber) {
-		this.carNumber = carNumber;
-	}
-
-	public String getCarMake() {
-		return carMake;
-	}
-
-	public void setCarMake(String carMake) {
-		this.carMake = carMake;
-	}
-
-	public String getCarModel() {
-		return carModel;
-	}
-
-	public void setCarModel(String carModel) {
-		this.carModel = carModel;
-	}
+	private String length;
+	private String width;
+	private String height;
 
 	public String getEmailId() {
 		return emailId;
@@ -157,5 +114,29 @@ public class TripFormData {
 	public void setEndTripPin(String endTripPin) {
 		this.endTripPin = endTripPin;
 	}
-
+	
+	public String getLength() {
+		return this.length;
+	}
+	
+	public void setLength (String length) {
+		this.length = length;
+	}
+	
+	public String getWidth() {
+		return this.width;
+	}
+	
+	public void setWidth (String width) {
+		this.width = width;
+	}
+	public String getHeight() {
+		return this.height;
+	}
+	
+	public void setHeight (String height) {
+		this.height = height;
+	}
 }
+
+

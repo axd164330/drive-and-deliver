@@ -12,11 +12,11 @@
     <div align="center">
         <table border="0">
             <tr>
-                <td colspan="2" align="center"><h2>Trip added Successfully!</h2></td>
+                <td colspan="2" align="center"><h2>Trip edited Successfully!</h2></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <h3>Thank you for registering!</h3>
+                    <h3>Thank you!!</h3>
                 </td>
             </tr>
             <%-- <tr>

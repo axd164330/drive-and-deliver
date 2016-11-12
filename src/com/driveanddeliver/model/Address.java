@@ -49,6 +49,10 @@ public class Address {
 	@JoinColumn(name="trip_address_id")
 	private Trip trip;
 	
+	@ManyToOne
+	@JoinColumn(name="package_address_id")
+	private MyPackage myPackage;
+	
 	public Address() {
 		
 	}
@@ -60,6 +64,12 @@ public class Address {
 	public Address(User user,Trip trip) {
 		this.user = user;		
 		this.trip = trip;		
+	}
+
+
+	public Address(User user,MyPackage myPackage) {
+		this.user = user;
+		this.myPackage = myPackage;
 	}
 	
 	public User getUser() {

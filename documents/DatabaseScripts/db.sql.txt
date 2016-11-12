@@ -9,9 +9,8 @@ CREATE TABLE `drive_deliver`.`user` (
   PRIMARY KEY (`user_id`,`email_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 CREATE TABLE `trip` (
-	`trip_id` int(11) unsigned NOT NULL,
+	`trip_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	`time_of_travel` date,
 	`trip_user_id` int(11) unsigned default null,
     PRIMARY KEY (`trip_id`),
@@ -20,7 +19,7 @@ CREATE TABLE `trip` (
 	
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `car` (
+CREATE TABLE `drive_deliver`.`car` (
   `car_id` int(11) NOT NULL AUTO_INCREMENT,
   `make` varchar(45) DEFAULT NULL,
   `model` varchar(45) DEFAULT NULL,
@@ -47,7 +46,32 @@ CREATE TABLE `drive_deliver`.`address` (
   KEY `fk_address_user_idx` (`address_user_id`),
   KEY `fk_trip_address_idx` (`trip_address_id`),
   CONSTRAINT `fk_address_userid` FOREIGN KEY (`address_user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_trip_addressid` FOREIGN KEY (`trip_address_id`) REFERENCES `trip` (`trip_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_trip_addressid` FOREIGN KEY (`trip_address_id`) REFERENCES `trip` (`trip_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
+//Added by Pooja
+
+CREATE TABLE `drive_deliver`.`mypackage` (
+	`package_id` int(11) unsigned NOT NULL AUTO_INCREMENT ,
+	`pickup_date` date,
+	`package_user_id` int(11) unsigned default null,
+    `width` float unsigned default 0.0,
+    `height` float  unsigned default 0.0,
+    `length` float  unsigned default 0.0,
+    PRIMARY KEY (`package_id`),
+	KEY `fk_package_user_idx` (`package_user_id`),
+	CONSTRAINT `fk_package_userid` FOREIGN KEY (`package_user_id`) REFERENCES `user`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+    
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table address add column package_address_id int(11) unsigned DEFAULT NULL;
+
+alter table address add constraint `fk_package_addressid`
+ FOREIGN KEY (`package_address_id`) REFERENCES `package` (`package_id`)
+ ON DELETE CASCADE ON UPDATE CASCADE;
+ 
+ alter table car add column length float default 0.0;
+ alter table car add column width float default 0.0;
+ alter table car add column height float default 0.0;
+ 
 commit;

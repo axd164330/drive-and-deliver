@@ -7,16 +7,17 @@
 <title>Trip Success</title>
 </head>
 
-<a href="${contextPath}/">Back to Home</a>
+<a href="${contextPath}">Back to Home</a>
 <body>
     <div align="center">
         <table border="0">
             <tr>
-                <td colspan="2" align="center"><h2>Trip added Successfully!</h2></td>
+                <td colspan="2" align="center"><h2>Delivery request added successfully</h2></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <h3>Thank you for registering!</h3>
+                    <h3>We will mail you details of the driver of your package soon! </h3>
+                    <!--Here's the review of your details:</h3> -->
                 </td>
             </tr>
             <%-- <tr>
