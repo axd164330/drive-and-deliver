@@ -79,4 +79,19 @@ public class PackageController extends HomepageController{
 		return "packageDetails";
 		
 	}
+	
+	@RequestMapping(value = "/cancelPackage", method = RequestMethod.GET)
+	public String cancelPackage(ModelMap map){
+		
+		//map.put("packageDetails", (MyPackage) this.packageService.getPackageDetails(Integer.parseInt(id)));
+		map.put("contextPath", this.getContextPath());
+		
+		map.put("cancelPackageMsg", "Package has been canceled");
+		
+		return "packageHistory";
+		
+	}
+	
+	
+	
 }

@@ -50,7 +50,8 @@ public class TripController extends HomepageController {
 
 	@RequestMapping(value = "/addtripdetails", method = RequestMethod.POST)
 	public String addTripDetails(@ModelAttribute("tripDetails") TripFormData trip, ModelMap map) {
-
+		
+		
 		map.put("Trip", trip);
 		map.put("contextPath", this.getContextPath());
 		User driver = this.userService.getUserDetails(trip.getEmailId());

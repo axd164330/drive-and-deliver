@@ -44,6 +44,13 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.framework.version}</version>
 	</dependency>
+	<dependency>
+	
+	<!-- Google Maps API  -->
+    	<groupId>com.google.maps</groupId>
+    	<artifactId>google-maps-services</artifactId>
+    	<version>0.1.16</version>
+	</dependency>
 
 		<!-- Spring ORM support -->
 	<dependency>

@@ -9,17 +9,17 @@
 </head>
 <body>
 
-	<a href="${contextPath}/">Back to Home</a>
+	<a href="">Back to Home</a>
 	<div align="center">
 		<h2>Trip History</h2>
 
 		<c:forEach var="trip" items="${trips}">
 
 			<h3>
-				<a href="${contextPath}/tripDetails?id=${trip.id}&e=false">Trip ID :
+				<a href="tripDetails?id=${trip.id}&e=false">Trip ID :
 					${trip.id}</a> Trip Date: ${trip.timeOfTravel} <a
-					href="${contextPath}/edittrip?id=${trip.id}&e=true">Edit</a> <a
-					href="${contextPath}/deleteTrip?id=${trip.id}">Delete</a>
+					href="edittrip?id=${trip.id}&e=true">Edit</a> <a
+					href="deleteTrip?id=${trip.id}">Delete</a>
 			</h3>
 
 		</c:forEach>

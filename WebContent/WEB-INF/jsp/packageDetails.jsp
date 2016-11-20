@@ -16,7 +16,7 @@
 <h2>Package Details</h2>
 
 
-TIME for trip : ${packageDetails.pickupDate}
+Date for trip : ${packageDetails.pickupDate}
 
 
 <c:forEach var="addressList" items="${packageDetails.address}">
