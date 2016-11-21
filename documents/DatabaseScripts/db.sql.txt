@@ -3,9 +3,9 @@ CREATE DATABASE `drive_deliver` /*!40100 DEFAULT CHARACTER SET utf8 */;
 CREATE TABLE `drive_deliver`.`user` (
   `user_id` int(11) unsigned NOT NULL,
   `name` varchar(20) NOT NULL DEFAULT '',
-  `country` varchar(20) DEFAULT NULL,
   `type_of_user` varchar(45) DEFAULT NULL,
-  `email_id` varchar(45) NOT NULL unique,
+  `username` varchar(45) NOT NULL unique,
+  `password` varachar(400) NOT NULL,
   PRIMARY KEY (`user_id`,`email_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -39,6 +39,7 @@ CREATE TABLE `drive_deliver`.`address` (
   `city` varchar(45) DEFAULT NULL,
   `pin_code` varchar(45) DEFAULT NULL,
   `phone_number` varchar(45) DEFAULT NULL,
+  `country` varchar(45) DEFAULT NULL,
   `type_of_address` varchar(45) DEFAULT NULL,
   `address_user_id` int(11) unsigned DEFAULT NULL,
   `trip_address_id` int(11) unsigned DEFAULT NULL,
@@ -73,8 +74,10 @@ alter table address add constraint `fk_package_addressid`
  alter table car add column length float default 0.0;
  alter table car add column width float default 0.0;
  alter table car add column height float default 0.0;
- 
- DROP TABLE IF EXISTS `role`;
+
+// end
+
+DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
