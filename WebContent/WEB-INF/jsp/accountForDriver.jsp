@@ -14,14 +14,13 @@
 <h1>Account Summary Page</h1>
 <br/>
 
-<a href="${contextPath}/addtrip?emailId=${user.emailId}">Add Trip</a>
+<a href="addtrip">Add Trip</a>
 
-<a href="${contextPath}/triphistory?emailId=${user.emailId}">Trip History</a>
+<a href="triphistory?emailId=${user.username}">Trip History</a>
 <br/>
  First Name: ${user.name}
 <br/>
-Country: ${user.country}
-<br/>
+
 Addresses:  <br/>
 <br/>
 <c:forEach var="addressList" items="${user.addresses}">

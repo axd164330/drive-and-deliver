@@ -58,16 +58,27 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.framework.version}</version>
 	</dependency>
+	<!-- Spring security -->
 	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>4.2.0.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>4.2.0.RELEASE</version>
+	</dependency>
+	<dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.8.2.RELEASE</version>
+        </dependency>
+	<!-- <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-jcl</artifactId>
 			<version>${sl4j.version}</version>
-	</dependency>
-	<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${sl4j.version}</version>
-	</dependency>
+	</dependency> -->
 	<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>

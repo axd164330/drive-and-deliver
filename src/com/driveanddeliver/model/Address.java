@@ -53,6 +53,10 @@ public class Address {
 	@JoinColumn(name="package_address_id")
 	private MyPackage myPackage;
 	
+	@Column(name="country")
+	private String country;
+	
+	
 	public Address() {
 		
 	}
@@ -143,6 +147,16 @@ public class Address {
 	public void setTrip(Trip trip) {
 		this.trip = trip;
 	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	
+	
 	
 
 }

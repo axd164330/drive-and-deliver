@@ -14,13 +14,12 @@
 <h1>Account Summary Page</h1>
 <br/>
 
-<a href="${contextPath}/addPackage?emailId=${user.emailId}">Send Package</a>
+<a href="addPackage?emailId=${user.username}">Send Package</a>
 
-<a href="${contextPath}/packagehistory?emailId=${user.emailId}">Package History</a>
+<a href="packagehistory?emailId=${user.username}">Package History</a>
 <br/>
  First Name: ${user.name}
-<br/>
-Country: ${user.country}
+
 <br/>
 Addresses:  <br/>
 <br/>

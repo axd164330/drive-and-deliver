@@ -64,6 +64,7 @@ public class PackageDAOImpl implements PackageDAO{
 		endAddress.setPhoneNo(data.getEndTripPhone());
 		endAddress.setPoBox(data.getEndTripPin());
 		endAddress.setTypeOfAddress("drop");
+		endAddress.setCountry(data.getEndTripCountry());
 		return endAddress;
 	}
 
@@ -75,6 +76,7 @@ public class PackageDAOImpl implements PackageDAO{
 		startAddress.setPhoneNo(data.getStartTripPhone());
 		startAddress.setPoBox(data.getStartTripPin());
 		startAddress.setTypeOfAddress("pickup");
+		startAddress.setCountry(data.getStartTripCountry());
 		return startAddress;
 	}
 	

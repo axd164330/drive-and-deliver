@@ -15,8 +15,13 @@ import com.driveanddeliver.model.User;
 import com.driveanddeliver.service.PackageService;
 import com.driveanddeliver.service.UserService;
 
+/**
+ * 
+ * @author Amandeep Singh Dhammu
+ *
+ */
 @Controller
-public class PackageController extends HomepageController{
+public class PackageController{
 
 	private UserService userService;
 
@@ -39,7 +44,7 @@ public class PackageController extends HomepageController{
 	public String addPackage(@RequestParam(value = "emailId", required = true) String emailId, ModelMap map) {
 
 		PackageFormData packageForm = new PackageFormData();
-		map.put("contextPath", this.getContextPath());
+		//map.put("contextPath", this.getContextPath());
 		map.put("emailId", emailId);
 		map.put("packageForm", packageForm);
 		
@@ -55,7 +60,7 @@ public class PackageController extends HomepageController{
 		User driver = this.userService.getUserDetails(carPackage.getEmailId());
 		
 		this.packageService.savePackageDetails(driver, carPackage);
-		map.put("contextPath", this.getContextPath());
+		//map.put("contextPath", this.getContextPath());
 		return "packageSuccess";
 	}
 	
@@ -65,7 +70,7 @@ public class PackageController extends HomepageController{
 		User user = this.userService.getUserDetails(emailId);
 		
 		map.put("packages",user.getPackages());
-		map.put("contextPath", this.getContextPath());
+		//map.put("contextPath", this.getContextPath());
 		
 		return "packageHistory";
 	}
@@ -74,7 +79,7 @@ public class PackageController extends HomepageController{
 	public String getPackageDetails(@RequestParam(value = "id", required = true) String id, ModelMap map){
 		
 		map.put("packageDetails", (MyPackage) this.packageService.getPackageDetails(Integer.parseInt(id)));
-		map.put("contextPath", this.getContextPath());
+		//map.put("contextPath", this.getContextPath());
 		
 		return "packageDetails";
 		
@@ -84,7 +89,7 @@ public class PackageController extends HomepageController{
 	public String cancelPackage(ModelMap map){
 		
 		//map.put("packageDetails", (MyPackage) this.packageService.getPackageDetails(Integer.parseInt(id)));
-		map.put("contextPath", this.getContextPath());
+		//map.put("contextPath", this.getContextPath());
 		
 		map.put("cancelPackageMsg", "Package has been canceled");
 		

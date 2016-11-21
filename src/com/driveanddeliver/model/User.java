@@ -1,14 +1,19 @@
 package com.driveanddeliver.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 
@@ -28,14 +33,11 @@ public class User {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "email_id")
-	private String emailId;
+	@Column(name = "userName")
+	private String username;
 
 	@Column(name = "type_of_user")
-	private String typeOfUser;
-
-	@Column(name = "country")
-	private String country;
+	private String typeOfUser;	
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Address> addresses;
@@ -46,6 +48,24 @@ public class User {
 	@OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
 	private List<MyPackage> packages;
 	
+	@ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+   	private Set<Role> roles;
+	
+	@Column(name="password")
+	private String password;
+    
+	@Transient
+	private String passwordConfirm;
+    
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 	public List<Trip> getTrips() {
 		return trips;
 	}
@@ -60,14 +80,14 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}	
+	
+	public String getUsername() {
+		return username;
 	}
 
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getName() {
@@ -78,13 +98,7 @@ public class User {
 		this.name = name;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
+	
 
 	public String getTypeOfUser() {
 		return typeOfUser;
@@ -110,6 +124,21 @@ public class User {
 		this.packages = packages;
 	}
 	
-	
+	public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
 
 }

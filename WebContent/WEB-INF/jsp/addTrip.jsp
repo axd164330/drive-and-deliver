@@ -5,6 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add a TRIP</title>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script>
+$( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+ </script>
 <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -70,55 +79,73 @@
 </head>
 <body>
 
+
 <a href="${contextPath}/">Back to Home</a>
 
 <div align="center">
 	
-                   <h2 align="center">TRIP - Registration</h2>
-        <form:form action="addtripdetails" method="post" commandName="tripForm">
-        
+        <h2 align="center">TRIP - Registration</h2>
+        <form:form action="addtrip" method="post" modelAttribute="tripForm">
+                	
+        	<table id="address">
+        	<spring:bind path="dateOfTrip">
+	        	<tr>
+        		   <td>Time of Travel</td>
+	               <td><form:input path="dateOfTrip" id="datepicker"/></td>
+	               <form:errors path="dateOfTrip"/>
+	            </tr>
+	        </spring:bind>
+        	</table>
+        	
         	<h3>Starting Address :</h3>
-        	<form:hidden path="emailId" value="${emailId}"/>
+        	<form:hidden path="emailId" value="${pageContext.request.userPrincipal.name}"/>
         	<div id="locationField">
       			<input id="autocomplete" placeholder="Enter your address"
              			onFocus="geolocate()" type="text"></input>
     		</div>
         	
+        	
             <table id="address" border="0">
                 
                 <tr>
+                <spring:bind path="startTripStreet1">
                     <td>Street 1</td>
                     <td><form:input id="street_number" path="startTripStreet1" /></td>
+                    <form:errors path="startTripStreet1"/>
+                </spring:bind>    
                 </tr>
+                
                 <tr>
                     <td>Street2:</td>
                     <td><form:input id="route"  path="startTripStreet2" /></td>
+                    <form:errors path="startTripStreet2"/>
                 </tr>
                 <tr>
                     <td>City</td>
                     <td><form:input id="locality" path="startTripCity" /></td>
+                    <form:errors path="startTripCity"/>
                 </tr>
                 <tr>
                 	<td>State</td>
                 	<td><form:input id="administrative_area_level_1" path="startTripState" /></td>
+                	<form:errors path="startTripState"/>
                 </tr>
                 <tr>
                 	<td>Country</td>
                 	<td><form:input id="country" path="startTripCountry" /></td>
+                	<form:errors path="startTripCountry"/>
                 </tr>
                 <tr>
                     <td>PIN</td>
                     <td><form:input id="postal_code" path="startTripPin" /></td>
+                    <form:errors path="startTripPin"/>
                 </tr>
               
                 <%-- <tr>
                     <td>Phone</td>
                     <td><form:input path="startTripPhone" /></td>
                 </tr> --%>
-                <tr>
-                    <td>Time of Travel(mm/dd/yyyy):</td>
-                    <td><form:input path="dateOfTrip" id="prefMovingDate" /></td>
-                </tr>
+                
                 
                 </table>
                 <h3>Destination Address :</h3>
@@ -131,26 +158,32 @@
                 <tr>
                     <td>Street 1</td>
                     <td><form:input path="endTripStreet1" id="estreet_number" /></td>
+                    <form:errors path="endTripStreet1"/>
                 </tr>
                 <tr>
                     <td>Street2:</td>
                     <td><form:input path="endTripStreet2" id="eroute" /></td>
+                    <form:errors path="endTripStreet2"/>
                 </tr>
                 <tr>
                     <td>City</td>
                     <td><form:input path="endTripCity" id="elocality" /></td>
+                    <form:errors path="endTripCity"/>
                 </tr>   
                  <tr>
                 	<td>State</td>
                 	<td><form:input id="eadministrative_area_level_1" path="endTripState" /></td>
+                	<form:errors path="endTripState"/>
                 </tr>
                 <tr>
                 	<td>Country</td>
                 	<td><form:input id="ecountry" path="endTripCountry" /></td>
+                	<form:errors path="endTripCountry"/>
                 </tr>             
                 <tr>
                     <td>PIN</td>
                     <td><form:input id="epostal_code" path="endTripPin" /></td>
+                    <form:errors path="endTripPin"/>
                 </tr>
                 <%-- <tr>
                     <td>Phone</td>
@@ -162,14 +195,17 @@
                 <tr>                    
                     <td>Car Number</td>
                     <td><form:input path="carNumber" /></td>
+                    <form:errors path="carNumber"/>
                 </tr>
                 <tr>
                     <td>Car Model</td>
                     <td><form:input path="carModel" /></td>
+                    <form:errors path="carModel"/>
                 </tr>
                 <tr>
                     <td>Car Make</td>
                     <td><form:input path="carMake" /></td>
+                    <form:errors path="carMake"/>
                 </tr>
                </table>
             <br/>

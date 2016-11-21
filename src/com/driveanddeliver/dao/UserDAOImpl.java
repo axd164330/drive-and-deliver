@@ -31,14 +31,14 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User getUserDetails(String emailId) {
+	public User getUserDetails(String username) {
 		
 		Session session = this.sessionFactory.openSession();
 		
 		Transaction transaction = session.beginTransaction();
-		String queryString = "from User where emailId=:emailId";
+		String queryString = "from User where username=:username";
 		Query query = session.createQuery(queryString);
-		query.setString("emailId", emailId); 
+		query.setString("username", username); 
 		Object object = query.uniqueResult();
 		
 		User user = (User) object;
