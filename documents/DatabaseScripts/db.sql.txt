@@ -42,6 +42,8 @@ CREATE TABLE `drive_deliver`.`address` (
   `type_of_address` varchar(45) DEFAULT NULL,
   `address_user_id` int(11) unsigned DEFAULT NULL,
   `trip_address_id` int(11) unsigned DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  `address_info` varchar(45) DEFAULT NULL,
    PRIMARY KEY (`address_id`),
   KEY `fk_address_user_idx` (`address_user_id`),
   KEY `fk_trip_address_idx` (`trip_address_id`),

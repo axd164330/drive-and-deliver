@@ -2,6 +2,8 @@ package com.driveanddeliver.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.driveanddeliver.model.Address;
 import com.driveanddeliver.model.User;
 import com.driveanddeliver.service.SecurityService;
 import com.driveanddeliver.service.UserService;
@@ -103,5 +106,53 @@ public class UserController{
 
         return "registration";
     }
+	
+	@RequestMapping(value="/addAddress",method=RequestMethod.GET)
+	public String addAddress(@RequestParam(value="username",required=false) String username,Model model){
+		
+		
+		model.addAttribute("username",username);
+		model.addAttribute("addressForm",new Address());
+		
+		return "addAddress";
+		
+	}
+	
+	
+	@RequestMapping(value="/addAddress",method=RequestMethod.POST)
+	public String addAddress(@ModelAttribute("addressForm") Address addressForm, Model map){
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName(); //get logged in user name
+		
+		User user = userService.getUserDetails(username);
+		
+		Address address = new Address(user);
+		
+		address.setAddress1(addressForm.getAddress1());
+		address.setAddress2(addressForm.getAddress2());
+		address.setAddressInfo("profileAddress");
+		address.setCity(addressForm.getCity());
+		address.setCountry(addressForm.getCountry());
+		address.setPhoneNo(addressForm.getPhoneNo());
+		address.setPoBox(addressForm.getPoBox());
+		
+		userService.addAddress(address);
+		
+		map.addAttribute("username",username);
+		return "redirect:/addressList";
+	}
+	
+	
+	@RequestMapping(value="/addressList", method= RequestMethod.GET)
+	public String getProfileAddress(ModelMap model){
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String username = auth.getName(); //get logged in user name
+
+		model.put("addressList", userService.getProfileAddress(username));
+		
+		return "profileAddressList";
+	}
 	
 }

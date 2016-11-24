@@ -17,7 +17,9 @@
 <a href="addtrip">Add Trip</a>
 
 <a href="triphistory?emailId=${user.username}">Trip History</a>
-<br/>
+
+<a href="addressList?username=${user.username}">Profile Address</a>
+<%-- <br/>
  First Name: ${user.name}
 <br/>
 
@@ -34,7 +36,7 @@ Addresses:  <br/>
 </c:forEach>
  
 
-</div>
+</div> --%>
 
 </body>
 </html>

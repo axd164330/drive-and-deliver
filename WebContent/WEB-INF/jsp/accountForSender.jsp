@@ -17,8 +17,11 @@
 <a href="addPackage?emailId=${user.username}">Send Package</a>
 
 <a href="packagehistory?emailId=${user.username}">Package History</a>
+
+<a href="addressList?username=${user.username}">Profile Address</a>
 <br/>
- First Name: ${user.name}
+<%-- 
+First Name: ${user.name}
 
 <br/>
 Addresses:  <br/>
@@ -33,7 +36,7 @@ Addresses:  <br/>
 	<br/>
 </c:forEach>
  
-
+ --%>
 </div>
 
 </body>

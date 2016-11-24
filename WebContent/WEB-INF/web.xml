@@ -5,6 +5,16 @@
    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
    <display-name>Drive and Deliver</display-name>
+   
+	<!-- <error-page>
+		<error-code>500</error-code>
+		<location>/error500.jsp</location>
+	</error-page>
+
+	<error-page>	
+		<error-code>404</error-code>
+		<location>/error404.jsp</location>
+	</error-page> -->
 
    <welcome-file-list>
    	  <welcome-file>hello.jsp</welcome-file>

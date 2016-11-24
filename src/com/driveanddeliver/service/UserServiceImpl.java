@@ -1,11 +1,13 @@
 package com.driveanddeliver.service;
 
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.driveanddeliver.dao.UserDAO;
+import com.driveanddeliver.model.Address;
 import com.driveanddeliver.model.User;
 import com.driveanddeliver.repository.RoleRepository;
 import com.driveanddeliver.repository.UserRepository;
@@ -71,6 +73,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User findByUsername(String userName) {
 		return userRepository.findByUsername(userName);
+	}
+
+	@Override
+	public List<Address> getProfileAddress(String username) {
+		return userDAO.getProfileAddress(username);
+	}
+
+	@Override
+	public void addAddress(Address address) {
+		this.userDAO.addAddress(address);
 	}
 
 }

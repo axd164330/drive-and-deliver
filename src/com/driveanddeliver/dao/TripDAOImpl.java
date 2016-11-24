@@ -156,6 +156,8 @@ public class TripDAOImpl implements TripDAO {
 		endAddress.setPhoneNo(data.getEndTripPhone());
 		endAddress.setPoBox(data.getEndTripPin());
 		endAddress.setTypeOfAddress("destination");
+		endAddress.setAddressInfo("tripAddress");
+		endAddress.setState(data.getEndTripState());
 		return endAddress;
 	}
 
@@ -168,6 +170,8 @@ public class TripDAOImpl implements TripDAO {
 		startAddress.setPoBox(data.getStartTripPin());
 		startAddress.setTypeOfAddress("start");
 		startAddress.setCountry(data.getStartTripCountry());
+		startAddress.setAddressInfo("tripAddress");
+		startAddress.setState(data.getStartTripState());
 		return startAddress;
 	}
 

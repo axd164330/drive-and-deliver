@@ -1,10 +1,14 @@
 package com.driveanddeliver.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.driveanddeliver.model.Address;
 import com.driveanddeliver.model.User;
 
 public class UserDAOImpl implements UserDAO {
@@ -49,5 +53,47 @@ public class UserDAOImpl implements UserDAO {
 		
 
 	}
+
+	@Override
+	public List<Address> getProfileAddress(String username) {
+	
+		if(username==null){
+			return null;
+		}
+		
+		Session session = this.sessionFactory.openSession();
+		
+		String queryString = "from User where username=:username";
+		Query query = session.createQuery(queryString);
+		query.setString("username", username); 
+		Object object = query.uniqueResult();
+		
+		User user = (User) object;
+		
+		List<Address> profileAddress = new ArrayList<>();
+		for(Address address:user.getAddresses()){
+			
+			if(address.getAddressInfo()!=null && address.getAddressInfo().equalsIgnoreCase("profileAddress")){
+				profileAddress.add(address);
+			}
+		}
+		
+		return profileAddress;
+	}
+
+	@Override
+	public void addAddress(Address address) {
+		
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(address);
+		
+		tx.commit();
+		session.close();
+	}
+	
+	
+	
+	
 
 }

@@ -52,6 +52,11 @@
     	<version>0.1.16</version>
 	</dependency>
 
+	<dependency>
+     <groupId>com.google.api-client</groupId>
+     <artifactId>google-api-client</artifactId>
+     <version>1.22.0</version>
+   	</dependency>
 		<!-- Spring ORM support -->
 	<dependency>
 			<groupId>org.springframework</groupId>

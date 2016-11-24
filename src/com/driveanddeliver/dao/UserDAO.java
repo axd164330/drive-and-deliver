@@ -1,5 +1,8 @@
 package com.driveanddeliver.dao;
 
+import java.util.List;
+
+import com.driveanddeliver.model.Address;
 import com.driveanddeliver.model.User;
 
 public interface UserDAO {
@@ -9,5 +12,8 @@ public interface UserDAO {
 	public User getUserDetails(String emailId);
 	
 	//public User findByUsername(String username);
+	
+	public List<Address> getProfileAddress(String username);
 
+	public void addAddress(Address address);
 }
