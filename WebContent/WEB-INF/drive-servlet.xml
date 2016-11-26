@@ -84,27 +84,4 @@
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
 	
-	<!-- 
-	<beans:bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <beans:property name="dataSource" ref="dataSource"/>
-        <beans:property name="packagesToScan" value="com.driveanddeliver.model"/>
-        <beans:property name="jpaVendorAdapter">
-            <beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
-        </beans:property>
-        <beans:property name="jpaProperties">
-            <beans:props>
-                <beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</beans:prop>
-                <beans:prop key="hibernate.show_sql">true</beans:prop>
-            </beans:props>
-        </beans:property>
-    </beans:bean>
-
-    Configure the transaction manager bean
-    <beans:bean id="transactionManager"
-          class="org.springframework.orm.jpa.JpaTransactionManager">
-        <beans:property name="entityManagerFactory" ref="entityManagerFactory"/>
-   	</beans:bean>
-	
-	<jpa:repositories base-package="com.driveanddeliver.repository"/>
-	 -->
 </beans:beans>

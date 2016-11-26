@@ -1,9 +1,9 @@
 package com.driveanddeliver.service;
 
-import com.driveanddeliver.model.PackageFormData;
-import com.driveanddeliver.model.User;
 import com.driveanddeliver.dao.PackageDAO;
 import com.driveanddeliver.model.MyPackage;
+import com.driveanddeliver.model.PackageFormData;
+import com.driveanddeliver.model.User;
 
 public class PackageServiceImpl implements PackageService {
 
@@ -26,5 +26,11 @@ public class PackageServiceImpl implements PackageService {
 	@Override
 	public MyPackage getPackageDetails(int id) {
 		return this.packageDAO.getPackageDetails(id);
+	}
+
+	@Override
+	public void updatePackageDetails(MyPackage myPackage) {
+		this.getPackageDAO().updatePackageDetails(myPackage);
+		
 	}
 }

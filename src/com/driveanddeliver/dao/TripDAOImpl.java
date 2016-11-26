@@ -48,7 +48,7 @@ public class TripDAOImpl implements TripDAO {
 
 		trip.setAddress(addresses);
 		trip.setCar(car);
-
+		trip.setTripStatus(Status.INPROGRESS.toString());
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
@@ -240,6 +240,19 @@ public class TripDAOImpl implements TripDAO {
 		td.setCarModel(car.getModel());
 		td.setCarNumber(car.getCarNumber());
 		return td;
+	}
+
+	@Override
+	public void updateTrip(Trip trip) {
+				
+		Session session = this.sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		session.merge(trip);
+		
+		transaction.commit();
+		session.close();
+		
 	}
 
 }

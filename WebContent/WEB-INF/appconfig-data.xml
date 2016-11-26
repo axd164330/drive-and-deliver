@@ -12,13 +12,13 @@
 
 
     <!-- Configure the data source bean -->
-    <bean  id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <!-- <bean  id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/drive_deliver" />
 		<property name="username" value="root" />
 		<property name="password" value="admin"/>
-	</bean>
+	</bean> -->
 
     <!-- Configure the entity manager factory bean -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

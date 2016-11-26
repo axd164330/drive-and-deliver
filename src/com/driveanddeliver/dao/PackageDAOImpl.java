@@ -14,8 +14,6 @@ import com.driveanddeliver.model.MyPackage;
 import com.driveanddeliver.model.PackageFormData;
 import com.driveanddeliver.model.User;
 
-import com.driveanddeliver.dao.PackageDAO;
-
 public class PackageDAOImpl implements PackageDAO{
 
 	private SessionFactory sessionFactory;
@@ -46,7 +44,7 @@ public class PackageDAOImpl implements PackageDAO{
 		myPackage.setLength(Float.parseFloat(data.getLength()));
 		myPackage.setWidth(Float.parseFloat(data.getWidth()));
 		myPackage.setTimestamp(new Timestamp(System.currentTimeMillis()));
-		
+		myPackage.setPackageStatus(Status.INPROGRESS.toString());
 		myPackage.setAddress(addresses);
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -101,6 +99,32 @@ public class PackageDAOImpl implements PackageDAO{
 		tx.commit();
 		session.close();
 		return pdetails;
+	}
+
+	@Override
+	public void updatePackageDetails(MyPackage myPackage) {
+
+		//myPackage.setTripId(trip);
+		//trip.setMyPackage(myPackage);
+		myPackage.setPackageStatus(Status.CONFIRMED.toString());
+		//trip.setTripStatus(Status.CONFIRMED.toString());
+		
+		Session session = this.sessionFactory.openSession();
+		Transaction transaction = (Transaction) session.beginTransaction();
+		
+		session.merge(myPackage);
+		
+		transaction.commit();
+		
+		session.close();
+		/*Session session1 = this.sessionFactory.openSession();
+		Transaction transaction1 = (Transaction) session1.beginTransaction();
+		
+		session1.merge(trip);
+		
+		
+		transaction1.commit();*/
+		
 	}
 	
 }

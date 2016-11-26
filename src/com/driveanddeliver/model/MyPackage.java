@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -47,6 +48,19 @@ public class MyPackage{
 	
 	@Column(name="creation_time")
 	private Timestamp timestamp;
+	
+	
+	@Column(name="package_status")
+	private String packageStatus;
+	
+	
+	@OneToOne(mappedBy="myPackage",cascade=CascadeType.ALL)
+	private Trip trip;
+	
+	
+	@OneToOne
+	@JoinColumn(name="trip_package_id")
+	private Trip tripId;
 	
 	public MyPackage() {
 	}
@@ -119,6 +133,30 @@ public class MyPackage{
 
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
+	}	
+	
+	public String getPackageStatus() {
+		return packageStatus;
+	}
+
+	public void setPackageStatus(String packageStatus) {
+		this.packageStatus = packageStatus;
+	}
+
+	public Trip getTrip() {
+		return trip;
+	}
+
+	public void setTrip(Trip trip) {
+		this.trip = trip;
+	}
+
+	public Trip getTripId() {
+		return tripId;
+	}
+
+	public void setTripId(Trip tripId) {
+		this.tripId = tripId;
 	}
 
 	

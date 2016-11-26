@@ -16,4 +16,6 @@ public interface TripDAO {
 	public TripFormData loadTripFormDetails(Trip trip);
 
 	public void updateTripDetails(TripFormData trip);
+	
+	public void updateTrip(Trip trip);
 }

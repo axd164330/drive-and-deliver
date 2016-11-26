@@ -50,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
 		User user = (User) object;
 		
 		transaction.commit();
-		
+		session.close();
 		return user;
 		
 
@@ -80,6 +80,8 @@ public class UserDAOImpl implements UserDAO {
 			}
 		}
 		
+		session.close();
+		
 		return profileAddress;
 	}
 
@@ -104,6 +106,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		List<User> user = query.list();
 		
+		session.close();
 		List<Trip> tripsList = new ArrayList<>();
 		
 		for(User u:user){
@@ -113,7 +116,10 @@ public class UserDAOImpl implements UserDAO {
 			for(Trip t:tripList){
 				java.util.Date startTime = t.getTimeOfTravel();
 				Date date = new Date();
-				
+				/*
+				if(t.getTripStatus()!=null && !t.getTripStatus().equals(Status.CONFIRMED.toString()))
+					continue;
+				*/
 				Calendar c = Calendar.getInstance();
 			    c.setTime(date);
 			    c.add(Calendar.WEEK_OF_MONTH, 1);
@@ -125,6 +131,7 @@ public class UserDAOImpl implements UserDAO {
 				}
 			}
 		}		
+		
 		
 		return tripsList;
 	}

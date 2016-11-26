@@ -13,16 +13,32 @@
 	<div align="center">
 		<h2>Trip History</h2>
 
-		<c:forEach var="trip" items="${trips}">
+		
 
-			<h3>
-				<a href="tripDetails?id=${trip.id}&e=false">Trip ID :
-					${trip.id}</a> Trip Date: ${trip.timeOfTravel} <a
-					href="edittrip?id=${trip.id}&e=true">Edit</a> <a
-					href="deleteTrip?id=${trip.id}">Delete</a>
-			</h3>
-
-		</c:forEach>
+			
+			<table border="1">
+				<tr>
+					<th>Trip Details</th>
+					<th>Time Of Trip</th>
+					<th>Edit Trip</th>
+					<th>Delete Trip</th>
+					<th>Trip Status</th>
+				</tr>
+			
+				<c:forEach var="trip" items="${trips}">
+				<tr>
+					
+					<td><a href="tripDetails?id=${trip.id}&e=false">View Details</a></td>
+					<td>${trip.timeOfTravel}</td>
+					<td><a href="edittrip?id=${trip.id}&e=true">Edit</a></td>
+					<td><a href="deleteTrip?id=${trip.id}">Delete</a></td>
+					<td>${trip.tripStatus}</td>					
+				</tr>
+				</c:forEach>
+			</table>
+			
+			
+		
 	</div>
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.driveanddeliver.dao.Status;
 import com.driveanddeliver.model.Address;
 import com.driveanddeliver.model.MyPackage;
 import com.driveanddeliver.model.Trip;
@@ -33,6 +34,11 @@ public class DistanceService {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	PackageService packageService;
+	
+	@Autowired
+	TripService tripService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(DistanceService.class);
 	
@@ -54,7 +60,7 @@ public class DistanceService {
 
 			@Override
 			public int compare(MyPackage arg0, MyPackage arg1) {
-				// TODO Auto-generated method stub
+				
 				return arg1.getTimestamp().compareTo(arg0.getTimestamp());
 			}
 		});
@@ -140,8 +146,14 @@ public class DistanceService {
 					map.put("message", "matchFound");
 					map.put("driver", trip.getUser());
 					map.put("tripDetails", trip);
-					break;
 					
+					myPackage.setPackageStatus(Status.CONFIRMED.toString());
+					trip.getMyPackage().setPackageStatus(Status.CONFIRMED.toString());
+				
+					trip.setTripStatus(Status.CONFIRMED.toString());
+					this.packageService.updatePackageDetails(myPackage);
+					this.tripService.updateTrip(trip);
+					break;
 				}
 				
 			}

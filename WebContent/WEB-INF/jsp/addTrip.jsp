@@ -98,7 +98,7 @@ $( function() {
         	</table>
         	
         	<h3>Starting Address :</h3>
-        	<form:hidden path="emailId" value="${pageContext.request.userPrincipal.name}"/>
+        	
         	<div id="locationField">
       			<input id="autocomplete" placeholder="Enter your address"
              			onFocus="geolocate()" type="text"></input>
@@ -209,8 +209,10 @@ $( function() {
                 </tr>
                </table>
             <br/>
+            
             <table>
             	<tr>
+            	<td><form:hidden path="emailId" value="${pageContext.request.userPrincipal.name}"/></td>
             	<td><input type="submit" value="Add Trip" /></td>
             	</tr>
             </table>

@@ -94,7 +94,37 @@ $("#cancelPackage button").click(function(){
 <div align="center">
 <h2>Package History</h2>
 
-<div id="myId">
+<div align="center">
+		<h2>Package History</h2>
+			
+			<table border="1">
+				<tr>
+					<th>Package Details</th>
+					<th>Time Of Trip</th>
+					<!-- <th>Edit Trip</th>
+					<th>Delete Trip</th> -->
+					<th>Trip Status</th>
+				</tr>
+			
+				<c:forEach var="packages" items="${packages}">
+				<tr>
+					
+					<td><a href="packageDetails?id=${packages.id}">View Details</a></td>
+					<td>${packages.pickupDate}</td>
+					<%-- <td><a href="edittrip?id=${trip.id}&e=true">Edit</a></td>
+					<td><a href="deleteTrip?id=${trip.id}">Delete</a></td> --%>
+					<td>${packages.packageStatus}</td>					
+				</tr>
+				</c:forEach>
+			</table>
+			
+			
+		
+	</div>
+
+
+
+<%-- <div id="myId">
 <c:forEach var="packages" items="${packages}">
 	
 	<ul><a href="packageDetails?id=${packages.id}">Trip ID : ${packages.id}</a> Trip Date: ${packages.pickupDate} <button id="${packages.id}" class="cancelPackage">Cancel</button>
@@ -117,7 +147,7 @@ $("#cancelPackage button").click(function(){
   </div>
 
 
-</div>
+</div> --%>
 </div>
 
 </body>

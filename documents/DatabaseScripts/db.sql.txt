@@ -101,4 +101,18 @@ CREATE TABLE `user_role` (
 
 ALTER TABLE `drive_deliver`.`mypackage` 
 ADD COLUMN `creation_time` TIMESTAMP(6) NULL AFTER `length`;
+
+ALTER TABLE `drive_deliver`.`mypackage` 
+ADD COLUMN `package_status` VARCHAR(45) NULL AFTER `creation_time`;
+
+ALTER TABLE `drive_deliver`.`trip` 
+ADD COLUMN `trip_status` VARCHAR(45) NULL AFTER `trip_user_id`;
+
+ALTER TABLE `drive_deliver`.`mypackage` 
+ADD COLUMN `trip_package_id` INT(11) NULL DEFAULT NULL AFTER `package_status`;
+
+ALTER TABLE `drive_deliver`.`trip` 
+ADD COLUMN `package_trip_id` INT(11) NULL DEFAULT NULL AFTER `trip_status`;
+
+
 commit;
