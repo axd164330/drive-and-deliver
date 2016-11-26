@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.driveanddeliver.dao.UserDAO;
 import com.driveanddeliver.model.Address;
+import com.driveanddeliver.model.Trip;
 import com.driveanddeliver.model.User;
 import com.driveanddeliver.repository.RoleRepository;
 import com.driveanddeliver.repository.UserRepository;
@@ -83,6 +84,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void addAddress(Address address) {
 		this.userDAO.addAddress(address);
+	}
+
+	@Override
+	public List<Trip> getTripsForNextWeek() {
+		return this.userDAO.getTripsForNextWeek();
 	}
 
 }

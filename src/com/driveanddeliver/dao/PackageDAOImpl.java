@@ -1,5 +1,6 @@
 package com.driveanddeliver.dao;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class PackageDAOImpl implements PackageDAO{
 		myPackage.setHeight(Float.parseFloat(data.getHeight()));
 		myPackage.setLength(Float.parseFloat(data.getLength()));
 		myPackage.setWidth(Float.parseFloat(data.getWidth()));
+		myPackage.setTimestamp(new Timestamp(System.currentTimeMillis()));
 		
 		myPackage.setAddress(addresses);
 		Session session = this.sessionFactory.openSession();

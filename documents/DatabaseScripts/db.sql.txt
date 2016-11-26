@@ -99,4 +99,6 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+ALTER TABLE `drive_deliver`.`mypackage` 
+ADD COLUMN `creation_time` TIMESTAMP(6) NULL AFTER `length`;
 commit;

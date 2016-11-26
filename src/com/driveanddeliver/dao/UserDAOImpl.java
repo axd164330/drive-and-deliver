@@ -1,6 +1,7 @@
 package com.driveanddeliver.dao;
-
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -9,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.driveanddeliver.model.Address;
+import com.driveanddeliver.model.Trip;
 import com.driveanddeliver.model.User;
 
 public class UserDAOImpl implements UserDAO {
@@ -90,6 +92,41 @@ public class UserDAOImpl implements UserDAO {
 		
 		tx.commit();
 		session.close();
+	}
+
+	@Override
+	public List<Trip> getTripsForNextWeek() {
+		Session session = this.sessionFactory.openSession();
+		
+		String queryString = "from User where type_of_user=:typeOfUser";
+		Query query = session.createQuery(queryString);
+		query.setString("typeOfUser", "driver"); 
+		
+		List<User> user = query.list();
+		
+		List<Trip> tripsList = new ArrayList<>();
+		
+		for(User u:user){
+			
+			List<Trip> tripList = u.getTrips(); 
+			
+			for(Trip t:tripList){
+				java.util.Date startTime = t.getTimeOfTravel();
+				Date date = new Date();
+				
+				Calendar c = Calendar.getInstance();
+			    c.setTime(date);
+			    c.add(Calendar.WEEK_OF_MONTH, 1);
+				
+			    Date date2 = c.getTime();
+			    
+				if(startTime.after(date) && startTime.before(date2)){
+					tripsList.add(t);
+				}
+			}
+		}		
+		
+		return tripsList;
 	}
 	
 	

@@ -3,6 +3,7 @@ package com.driveanddeliver.dao;
 import java.util.List;
 
 import com.driveanddeliver.model.Address;
+import com.driveanddeliver.model.Trip;
 import com.driveanddeliver.model.User;
 
 public interface UserDAO {
@@ -16,4 +17,6 @@ public interface UserDAO {
 	public List<Address> getProfileAddress(String username);
 
 	public void addAddress(Address address);
+	
+	public List<Trip> getTripsForNextWeek();
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.driveanddeliver.model.MyPackage;
 import com.driveanddeliver.model.PackageFormData;
 import com.driveanddeliver.model.User;
+import com.driveanddeliver.service.DistanceService;
 import com.driveanddeliver.service.PackageService;
 import com.driveanddeliver.service.UserService;
 
@@ -26,7 +27,7 @@ public class PackageController{
 	private UserService userService;
 
 	private PackageService packageService;
-		
+			
 	@Autowired(required = true)	  
 	@Qualifier(value = "userService") 
 	public void setUserService(UserService userService) {
@@ -57,11 +58,15 @@ public class PackageController{
 				
 		map.put("Package", carPackage);
 		
-		User driver = this.userService.getUserDetails(carPackage.getEmailId());
+		User user = this.userService.getUserDetails(carPackage.getEmailId());
 		
-		this.packageService.savePackageDetails(driver, carPackage);
+		this.packageService.savePackageDetails(user, carPackage);
+		
+		
+		//distanceService.match(user);
+		
 		//map.put("contextPath", this.getContextPath());
-		return "packageSuccess";
+		return "redirect:/match";
 	}
 	
 	@RequestMapping(value = "/packagehistory", method = RequestMethod.GET)

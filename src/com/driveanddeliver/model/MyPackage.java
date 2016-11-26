@@ -1,5 +1,6 @@
 package com.driveanddeliver.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "MyPackage")
-public class MyPackage {
+public class MyPackage{
 	
 	@Id
 	@Column(name="package_id")
@@ -43,6 +44,9 @@ public class MyPackage {
 	
 	@Column(name="height")
 	private float height;
+	
+	@Column(name="creation_time")
+	private Timestamp timestamp;
 	
 	public MyPackage() {
 	}
@@ -108,5 +112,14 @@ public class MyPackage {
 	public void setPickupDate(Date pickupDate) {
 		this.pickupDate = pickupDate;
 	}
+
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	
 }
