@@ -116,10 +116,10 @@ public class UserDAOImpl implements UserDAO {
 			for(Trip t:tripList){
 				java.util.Date startTime = t.getTimeOfTravel();
 				Date date = new Date();
-				/*
+				
 				if(t.getTripStatus()!=null && !t.getTripStatus().equals(Status.CONFIRMED.toString()))
 					continue;
-				*/
+				
 				Calendar c = Calendar.getInstance();
 			    c.setTime(date);
 			    c.add(Calendar.WEEK_OF_MONTH, 1);
