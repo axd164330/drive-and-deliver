@@ -11,6 +11,7 @@
 <body>
 <div align="center">
 
+
    <h2>${message}</h2>
 <!--    <a href="login">Login</a>
    <a href="accountsummary?emailId=asdhammu@gmail.com">Driver</a>

@@ -117,7 +117,7 @@ public class UserDAOImpl implements UserDAO {
 				java.util.Date startTime = t.getTimeOfTravel();
 				Date date = new Date();
 				
-				if(t.getTripStatus()!=null && !t.getTripStatus().equals(Status.CONFIRMED.toString()))
+				if(t.getTripStatus()!=null && t.getTripStatus().equals(Status.CONFIRMED.toString()))
 					continue;
 				
 				Calendar c = Calendar.getInstance();
