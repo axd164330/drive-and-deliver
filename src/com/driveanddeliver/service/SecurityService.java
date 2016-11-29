@@ -1,7 +1,8 @@
 package com.driveanddeliver.service;
 
 public interface SecurityService {
-    String findLoggedInUsername();
+	
+    public String findLoggedInUsername();
 
-    void autologin(String username, String password);
+    public void autologin(String username, String password);
 }

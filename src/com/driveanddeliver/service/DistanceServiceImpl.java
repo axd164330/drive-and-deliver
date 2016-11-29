@@ -28,7 +28,7 @@ import com.google.maps.model.LatLng;
 import com.google.maps.model.TravelMode;
 
 @Controller
-public class DistanceService {
+public class DistanceServiceImpl {
 
 	
 	@Autowired
@@ -40,7 +40,7 @@ public class DistanceService {
 	@Autowired
 	TripService tripService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(DistanceService.class);
+	private static final Logger logger = LoggerFactory.getLogger(DistanceServiceImpl.class);
 	
 	@RequestMapping(value="/match", method=RequestMethod.GET)
 	public String match(ModelMap map){
@@ -148,10 +148,14 @@ public class DistanceService {
 					map.put("tripDetails", trip);
 					
 					myPackage.setPackageStatus(Status.CONFIRMED.toString());
-					trip.getMyPackage().setPackageStatus(Status.CONFIRMED.toString());
-				
+					myPackage.setTripId(trip);
+					trip.setMyPackage(myPackage);					
+					if(trip.getMyPackage()!=null){
+						trip.getMyPackage().setPackageStatus(Status.CONFIRMED.toString());						
+					}
 					trip.setTripStatus(Status.CONFIRMED.toString());
 					this.packageService.updatePackageDetails(myPackage);
+					
 					this.tripService.updateTrip(trip);
 					break;
 				}
@@ -163,8 +167,11 @@ public class DistanceService {
 				map.put("message", "We ll get back to you shortly with details");
 				
 			}
-		} catch (Exception e) {
+		} catch(NullPointerException e){
+			logger.error("Null Pointer Exception" + e);
+		}catch (Exception e) {
 			logger.error("Exception while calling google API" + e);
+			
 		}
 		
 		
