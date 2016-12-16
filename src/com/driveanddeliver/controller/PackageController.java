@@ -15,13 +15,18 @@ import com.driveanddeliver.model.User;
 import com.driveanddeliver.service.PackageService;
 import com.driveanddeliver.service.UserService;
 
+/**
+ * 
+ * @author Amandeep Singh Dhammu
+ *
+ */
 @Controller
-public class PackageController extends HomepageController{
+public class PackageController{
 
 	private UserService userService;
 
 	private PackageService packageService;
-		
+			
 	@Autowired(required = true)	  
 	@Qualifier(value = "userService") 
 	public void setUserService(UserService userService) {
@@ -39,7 +44,6 @@ public class PackageController extends HomepageController{
 	public String addPackage(@RequestParam(value = "emailId", required = true) String emailId, ModelMap map) {
 
 		PackageFormData packageForm = new PackageFormData();
-		map.put("contextPath", this.getContextPath());
 		map.put("emailId", emailId);
 		map.put("packageForm", packageForm);
 		
@@ -52,11 +56,12 @@ public class PackageController extends HomepageController{
 				
 		map.put("Package", carPackage);
 		
-		User driver = this.userService.getUserDetails(carPackage.getEmailId());
+		User user = this.userService.getUserDetails(carPackage.getEmailId());
 		
-		this.packageService.savePackageDetails(driver, carPackage);
-		map.put("contextPath", this.getContextPath());
-		return "packageSuccess";
+		this.packageService.savePackageDetails(user, carPackage);
+		
+		
+		return "redirect:/match";
 	}
 	
 	@RequestMapping(value = "/packagehistory", method = RequestMethod.GET)
@@ -64,9 +69,7 @@ public class PackageController extends HomepageController{
 		
 		User user = this.userService.getUserDetails(emailId);
 		
-		map.put("packages",user.getPackages());
-		map.put("contextPath", this.getContextPath());
-		
+		map.put("packages",user.getPackages());		
 		return "packageHistory";
 	}
 	
@@ -74,9 +77,20 @@ public class PackageController extends HomepageController{
 	public String getPackageDetails(@RequestParam(value = "id", required = true) String id, ModelMap map){
 		
 		map.put("packageDetails", (MyPackage) this.packageService.getPackageDetails(Integer.parseInt(id)));
-		map.put("contextPath", this.getContextPath());
 		
 		return "packageDetails";
 		
 	}
+	
+	@RequestMapping(value = "/cancelPackage", method = RequestMethod.GET)
+	public String cancelPackage(ModelMap map){
+				
+		map.put("cancelPackageMsg", "Package has been canceled");
+		
+		return "packageHistory";
+		
+	}
+	
+	
+	
 }

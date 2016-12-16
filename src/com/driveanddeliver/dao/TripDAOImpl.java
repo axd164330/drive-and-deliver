@@ -48,7 +48,7 @@ public class TripDAOImpl implements TripDAO {
 
 		trip.setAddress(addresses);
 		trip.setCar(car);
-
+		trip.setTripStatus(Status.INPROGRESS.toString());
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
@@ -83,10 +83,12 @@ public class TripDAOImpl implements TripDAO {
 		start.setCity(tripForm.getStartTripCity());
 		start.setPhoneNo(tripForm.getStartTripPhone());
 		start.setPoBox(tripForm.getStartTripPin());
+		start.setCountry(tripForm.getStartTripCountry());
 		
 		dest.setAddress1(tripForm.getEndTripStreet1());
 		dest.setAddress2(tripForm.getEndTripStreet2());
 		dest.setCity(tripForm.getEndTripCity());
+		dest.setCountry(tripForm.getEndTripCountry());
 		dest.setPhoneNo(tripForm.getEndTripPhone());
 		dest.setPoBox(tripForm.getEndTripPin());
 
@@ -150,9 +152,12 @@ public class TripDAOImpl implements TripDAO {
 		endAddress.setAddress1(data.getEndTripStreet1());
 		endAddress.setAddress2(data.getEndTripStreet2());
 		endAddress.setCity(data.getEndTripCity());
+		endAddress.setCountry(data.getEndTripCountry());
 		endAddress.setPhoneNo(data.getEndTripPhone());
 		endAddress.setPoBox(data.getEndTripPin());
 		endAddress.setTypeOfAddress("destination");
+		endAddress.setAddressInfo("tripAddress");
+		endAddress.setState(data.getEndTripState());
 		return endAddress;
 	}
 
@@ -164,6 +169,9 @@ public class TripDAOImpl implements TripDAO {
 		startAddress.setPhoneNo(data.getStartTripPhone());
 		startAddress.setPoBox(data.getStartTripPin());
 		startAddress.setTypeOfAddress("start");
+		startAddress.setCountry(data.getStartTripCountry());
+		startAddress.setAddressInfo("tripAddress");
+		startAddress.setState(data.getStartTripState());
 		return startAddress;
 	}
 
@@ -232,6 +240,19 @@ public class TripDAOImpl implements TripDAO {
 		td.setCarModel(car.getModel());
 		td.setCarNumber(car.getCarNumber());
 		return td;
+	}
+
+	@Override
+	public void updateTrip(Trip trip) {
+				
+		Session session = this.sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		session.merge(trip);
+		
+		transaction.commit();
+		session.close();
+		
 	}
 
 }

@@ -45,6 +45,12 @@ public class TripServiceImpl implements TripService {
 		// TODO Auto-generated method stub
 		this.tripDAO.updateTripDetails(trip);
 	}
+
+	@Override
+	public void updateTrip(Trip trip) {
+		this.tripDAO.updateTrip(trip);
+		
+	}
 	
 
 }

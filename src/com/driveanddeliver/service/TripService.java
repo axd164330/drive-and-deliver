@@ -16,4 +16,6 @@ public interface TripService {
 	public TripFormData loadTripFormData(Trip trip);
 
 	public void updateTripDetails(TripFormData trip);
+	
+	public void updateTrip(Trip trip);
 }

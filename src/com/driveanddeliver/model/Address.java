@@ -32,6 +32,9 @@ public class Address {
 	@Column(name="city")
 	private String city;
 	
+	@Column(name="state")
+	private String state;
+	
 	@Column(name="phone_number")
 	private String phoneNo;
 	
@@ -52,6 +55,12 @@ public class Address {
 	@ManyToOne
 	@JoinColumn(name="package_address_id")
 	private MyPackage myPackage;
+	
+	@Column(name="country")
+	private String country;
+	
+	@Column(name="address_info")
+	private String addressInfo;
 	
 	public Address() {
 		
@@ -143,6 +152,30 @@ public class Address {
 	public void setTrip(Trip trip) {
 		this.trip = trip;
 	}
-	
 
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getAddressInfo() {
+		return addressInfo;
+	}
+
+	public void setAddressInfo(String addressInfo) {
+		this.addressInfo = addressInfo;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	
 }

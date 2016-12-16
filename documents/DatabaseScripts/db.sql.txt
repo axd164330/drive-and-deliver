@@ -1,4 +1,3 @@
-
 CREATE DATABASE `drive_deliver` /*!40100 DEFAULT CHARACTER SET utf8 */;
 CREATE TABLE `drive_deliver`.`user` (
   `user_id` int(11) unsigned NOT NULL,
@@ -43,6 +42,8 @@ CREATE TABLE `drive_deliver`.`address` (
   `type_of_address` varchar(45) DEFAULT NULL,
   `address_user_id` int(11) unsigned DEFAULT NULL,
   `trip_address_id` int(11) unsigned DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  `address_info` varchar(45) DEFAULT NULL,
    PRIMARY KEY (`address_id`),
   KEY `fk_address_user_idx` (`address_user_id`),
   KEY `fk_trip_address_idx` (`trip_address_id`),
@@ -97,5 +98,20 @@ CREATE TABLE `user_role` (
   CONSTRAINT `fk_user_role_userid` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+ALTER TABLE `drive_deliver`.`mypackage` 
+ADD COLUMN `creation_time` TIMESTAMP(6) NULL AFTER `length`;
+
+ALTER TABLE `drive_deliver`.`mypackage` 
+ADD COLUMN `package_status` VARCHAR(45) NULL AFTER `creation_time`;
+
+ALTER TABLE `drive_deliver`.`trip` 
+ADD COLUMN `trip_status` VARCHAR(45) NULL AFTER `trip_user_id`;
+
+ALTER TABLE `drive_deliver`.`mypackage` 
+ADD COLUMN `trip_package_id` INT(11) NULL DEFAULT NULL AFTER `package_status`;
+
+ALTER TABLE `drive_deliver`.`trip` 
+ADD COLUMN `package_trip_id` INT(11) NULL DEFAULT NULL AFTER `trip_status`;
 
 commit;

@@ -7,6 +7,8 @@ public class PackageFormData {
 	private Date dateOfTrip;
 	private String startTripStreet1;
 	private String startTripStreet2;
+	private String startTripState;
+	private String startTripCountry;
 	private String startTripCity;
 	private String startTripPhone;
 	private String startTripPin;
@@ -15,9 +17,45 @@ public class PackageFormData {
 	private String endTripCity;
 	private String endTripPhone;
 	private String endTripPin;
+	private String endTripState;
+	private String endTripCountry;
 	private String length;
 	private String width;
 	private String height;
+
+	
+	
+	public String getStartTripCountry() {
+		return startTripCountry;
+	}
+
+	public void setStartTripCountry(String startTripCountry) {
+		this.startTripCountry = startTripCountry;
+	}
+
+	public String getEndTripCountry() {
+		return endTripCountry;
+	}
+
+	public void setEndTripCountry(String endTripCountry) {
+		this.endTripCountry = endTripCountry;
+	}
+
+	public String getStartTripState() {
+		return startTripState;
+	}
+
+	public void setStartTripState(String startTripState) {
+		this.startTripState = startTripState;
+	}
+
+	public String getEndTripState() {
+		return endTripState;
+	}
+
+	public void setEndTripState(String endTripState) {
+		this.endTripState = endTripState;
+	}
 
 	public String getEmailId() {
 		return emailId;

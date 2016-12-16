@@ -26,7 +26,7 @@ public class HomepageController {
 		this.contextPath = contextPath;
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/","/index","/welcome"}, method = RequestMethod.GET)
 	public String printHello(ModelMap model, HttpServletRequest httpServletRequest) {
 
 		model.addAttribute("message", "Welcome to Drive and Deliver");

@@ -44,23 +44,46 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.framework.version}</version>
 	</dependency>
+	<dependency>
+	
+	<!-- Google Maps API  -->
+    	<groupId>com.google.maps</groupId>
+    	<artifactId>google-maps-services</artifactId>
+    	<version>0.1.16</version>
+	</dependency>
 
+	<dependency>
+     <groupId>com.google.api-client</groupId>
+     <artifactId>google-api-client</artifactId>
+     <version>1.22.0</version>
+   	</dependency>
 		<!-- Spring ORM support -->
 	<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.framework.version}</version>
 	</dependency>
+	<!-- Spring security -->
 	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>4.2.0.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>4.2.0.RELEASE</version>
+	</dependency>
+	<dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.8.2.RELEASE</version>
+        </dependency>
+	<!-- <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-jcl</artifactId>
 			<version>${sl4j.version}</version>
-	</dependency>
-	<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${sl4j.version}</version>
-	</dependency>
+	</dependency> -->
 	<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>

@@ -1,27 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Account Summary</title>
 </head>
-
 <a href="${contextPath}/">Back to Home</a>
 <body>
 <div align="center">
+
 <h1>Account Summary Page</h1>
 <br/>
 
-<a href="${contextPath}/addtrip?emailId=${user.emailId}">Add Trip</a>
+<a href="addtrip">Add Trip</a>
 
-<a href="${contextPath}/triphistory?emailId=${user.emailId}">Trip History</a>
-<br/>
+<a href="triphistory?emailId=${user.username}">Trip History</a>
+
+<a href="addressList?username=${user.username}">Profile Address</a>
+<%-- <br/>
  First Name: ${user.name}
 <br/>
-Country: ${user.country}
-<br/>
+
 Addresses:  <br/>
 <br/>
 <c:forEach var="addressList" items="${user.addresses}">
@@ -35,7 +41,7 @@ Addresses:  <br/>
 </c:forEach>
  
 
-</div>
+</div> --%>
 
 </body>
 </html>

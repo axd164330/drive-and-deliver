@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,14 +15,24 @@ import com.driveanddeliver.model.TripFormData;
 import com.driveanddeliver.model.User;
 import com.driveanddeliver.service.TripService;
 import com.driveanddeliver.service.UserService;
+import com.driveanddeliver.validator.TripValidator;
+
+/**
+ * 
+ * @author Amandeep Singh Dhammu
+ *
+ */
 
 @Controller
-public class TripController extends HomepageController {
+public class TripController{
 
 	private UserService userService;
 
 	private TripService tripService;
 
+	@Autowired(required=true)
+	private TripValidator tripValidator;	
+	
 	@Autowired(required = true)
 	@Qualifier(value = "tripService")
 	public void setTripService(TripService tripService) {
@@ -39,44 +50,43 @@ public class TripController extends HomepageController {
 	}
 
 	@RequestMapping(value = "/addtrip", method = RequestMethod.GET)
-	public String addTrip(@RequestParam(value = "emailId", required = true) String emailId, ModelMap map) {
-
-		TripFormData trip = new TripFormData();
-		map.put("contextPath", this.getContextPath());
-		map.put("emailId", emailId);
-		map.put("tripForm", trip);
+	public String addTrip(ModelMap map) {
+		map.put("tripForm", new TripFormData());
+		
 		return "addTrip";
 	}
 
-	@RequestMapping(value = "/addtripdetails", method = RequestMethod.POST)
-	public String addTripDetails(@ModelAttribute("tripDetails") TripFormData trip, ModelMap map) {
+	@RequestMapping(value = "/addtrip", method = RequestMethod.POST)
+	public String addTripDetails(@ModelAttribute("tripForm") TripFormData tripForm,BindingResult bindingResult, ModelMap map) {
+		
+		/**
+		 * 1. Binding result and map in the arguments should be in the given order.
+		 * Otherwise the framework throws error of 400 not found
+		 * 
+		 * 2. model attribute (tripForm) and type of tripformdata should have same name 
+		 */
+		
+		tripValidator.validate(tripForm, bindingResult);
+		
+		if(bindingResult.hasErrors()){
+			return "addTrip";
+		}
+		
+		map.put("Trip", tripForm);
+		User driver = this.userService.getUserDetails(tripForm.getEmailId());
 
-		map.put("Trip", trip);
-		map.put("contextPath", this.getContextPath());
-		User driver = this.userService.getUserDetails(trip.getEmailId());
-
-		this.tripService.saveTripDetails(driver, trip);
+		this.tripService.saveTripDetails(driver, tripForm);
 
 		return "tripSuccess";
 	}
 	
-	//added by Pradeep edittripdetails
 	
-	@RequestMapping(value = "/edittripdetails", method = RequestMethod.POST)
-	public String editTripDetails(@ModelAttribute("tripDetails") TripFormData trip, ModelMap map) {
-		map.put("Trip", trip);
-		map.put("contextPath", this.getContextPath());
-		
-		this.tripService.updateTripDetails(trip);
-
-		return "editTripSuccess";
-	}
 
 	@RequestMapping(value = "/triphistory", method = RequestMethod.GET)
 	public String getTripHistory(@RequestParam(value = "emailId", required = true) String emailId, ModelMap map) {
 
 		User driver = this.userService.getUserDetails(emailId);
-		map.put("contextPath", this.getContextPath());
+		//map.put("contextPath", this.getContextPath());
 		map.put("trips", driver.getTrips());
 
 		return "tripHistory";
@@ -85,7 +95,7 @@ public class TripController extends HomepageController {
 	@RequestMapping(value = { "/tripDetails", "/edittrip" }, method = RequestMethod.GET)
 	public String getTripDetails(@RequestParam(value = "id", required = true) String id,
 			@RequestParam(value = "e", required = true) String edit, ModelMap map) {
-		map.put("contextPath", this.getContextPath());
+		//map.put("contextPath", this.getContextPath());
 		map.put("tripDetails", (Trip) this.getTripService().getTripDetails(Integer.parseInt(id)));
 		if (edit.equalsIgnoreCase("true")) {
 			TripFormData loadedTripForm = new TripFormData();
@@ -101,10 +111,21 @@ public class TripController extends HomepageController {
 	// added by Pradeep deleteTrip
 	@RequestMapping(value = "/deleteTrip", method = RequestMethod.GET)
 	public String deleteTrip(@RequestParam(value = "id", required = true) String id, ModelMap map) {
-		map.put("contextPath", this.getContextPath());
+		//map.put("contextPath", this.getContextPath());
 		this.tripService.deleteTrip(Integer.parseInt(id));
 
 		return "deleteSuccess";
 	}
 
+	//added by Pradeep edittripdetails
+	
+	@RequestMapping(value = "/edittripdetails", method = RequestMethod.POST)
+	public String editTripDetails(@ModelAttribute("tripForm") TripFormData trip, ModelMap map) {
+		map.put("Trip", trip);
+		//map.put("contextPath", this.getContextPath());
+		
+		this.tripService.updateTripDetails(trip);
+
+		return "editTripSuccess";
+	}
 }

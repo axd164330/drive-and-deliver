@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+	<beans:import resource="appconfig-security.xml"/>
+	<beans:import resource="appconfig-mvc.xml"/>
+	<beans:import resource="appconfig-data.xml"/>
    <context:component-scan base-package="com.driveanddeliver.controller" />
+   <context:component-scan base-package="com.driveanddeliver.service"/>
+   <context:component-scan base-package="com.driveanddeliver.validator"/>
+
+
 
    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <beans:property name="prefix" value="/WEB-INF/jsp/" />
@@ -32,6 +40,7 @@
 				<beans:value>com.driveanddeliver.model.Trip</beans:value>
 				<beans:value>com.driveanddeliver.model.Car</beans:value>
 				<beans:value>com.driveanddeliver.model.MyPackage</beans:value>
+				<beans:value>com.driveanddeliver.model.Role</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -42,6 +51,7 @@
 		</beans:property>
 	
 	</beans:bean>
+	
 	
 	<beans:bean id="userDAO" class="com.driveanddeliver.dao.UserDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />

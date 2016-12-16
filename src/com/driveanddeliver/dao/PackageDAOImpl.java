@@ -1,5 +1,6 @@
 package com.driveanddeliver.dao;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,6 @@ import com.driveanddeliver.model.Address;
 import com.driveanddeliver.model.MyPackage;
 import com.driveanddeliver.model.PackageFormData;
 import com.driveanddeliver.model.User;
-
-import com.driveanddeliver.dao.PackageDAO;
 
 public class PackageDAOImpl implements PackageDAO{
 
@@ -44,7 +43,8 @@ public class PackageDAOImpl implements PackageDAO{
 		myPackage.setHeight(Float.parseFloat(data.getHeight()));
 		myPackage.setLength(Float.parseFloat(data.getLength()));
 		myPackage.setWidth(Float.parseFloat(data.getWidth()));
-		
+		myPackage.setTimestamp(new Timestamp(System.currentTimeMillis()));
+		myPackage.setPackageStatus(Status.INPROGRESS.toString());
 		myPackage.setAddress(addresses);
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -64,6 +64,9 @@ public class PackageDAOImpl implements PackageDAO{
 		endAddress.setPhoneNo(data.getEndTripPhone());
 		endAddress.setPoBox(data.getEndTripPin());
 		endAddress.setTypeOfAddress("drop");
+		endAddress.setCountry(data.getEndTripCountry());
+		endAddress.setAddressInfo("packageAddress");
+		endAddress.setState(data.getEndTripState());
 		return endAddress;
 	}
 
@@ -75,6 +78,9 @@ public class PackageDAOImpl implements PackageDAO{
 		startAddress.setPhoneNo(data.getStartTripPhone());
 		startAddress.setPoBox(data.getStartTripPin());
 		startAddress.setTypeOfAddress("pickup");
+		startAddress.setCountry(data.getStartTripCountry());
+		startAddress.setAddressInfo("packageAddress");
+		startAddress.setState(data.getStartTripState());
 		return startAddress;
 	}
 	
@@ -93,6 +99,32 @@ public class PackageDAOImpl implements PackageDAO{
 		tx.commit();
 		session.close();
 		return pdetails;
+	}
+
+	@Override
+	public void updatePackageDetails(MyPackage myPackage) {
+
+		//myPackage.setTripId(trip);
+		//trip.setMyPackage(myPackage);
+		myPackage.setPackageStatus(Status.CONFIRMED.toString());
+		//trip.setTripStatus(Status.CONFIRMED.toString());
+		
+		Session session = this.sessionFactory.openSession();
+		Transaction transaction = (Transaction) session.beginTransaction();
+		
+		session.merge(myPackage);
+		
+		transaction.commit();
+		
+		session.close();
+		/*Session session1 = this.sessionFactory.openSession();
+		Transaction transaction1 = (Transaction) session1.beginTransaction();
+		
+		session1.merge(trip);
+		
+		
+		transaction1.commit();*/
+		
 	}
 	
 }

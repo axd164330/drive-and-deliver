@@ -44,6 +44,16 @@ public class Trip {
 	@JoinColumn(name="trip_user_id")
 	private User user;
 	
+	@Column(name="trip_status")
+	private String tripStatus;
+	
+	@OneToOne
+	@JoinColumn(name="package_trip_id")
+	private MyPackage myPackage;
+	
+	@OneToOne(mappedBy="tripId",cascade=CascadeType.ALL)
+	private MyPackage myPackage2;
+	
 	public Trip() {
 		// TODO Auto-generated constructor stub
 	}
@@ -95,6 +105,30 @@ public class Trip {
 
 	public void setAddress(List<Address> address) {
 		this.address = address;
+	}
+
+	public String getTripStatus() {
+		return tripStatus;
+	}
+
+	public void setTripStatus(String status) {
+		this.tripStatus = status;
+	}
+
+	public MyPackage getMyPackage() {
+		return myPackage;
+	}
+
+	public void setMyPackage(MyPackage myPackage) {
+		this.myPackage = myPackage;
+	}
+
+	public MyPackage getMyPackage2() {
+		return myPackage2;
+	}
+
+	public void setMyPackage2(MyPackage myPackage2) {
+		this.myPackage2 = myPackage2;
 	}
 	
 	

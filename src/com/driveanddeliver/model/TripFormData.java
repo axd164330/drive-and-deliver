@@ -11,17 +11,22 @@ public class TripFormData {
 	private String startTripStreet1;
 	private String startTripStreet2;
 	private String startTripCity;
+	private String startTripState;
+	private String startTripCountry;
 	private String startTripPhone;
 	private String startTripPin;
 	private String endTripStreet1;
 	private String endTripStreet2;
 	private String endTripCity;
 	private String endTripPhone;
+	private String endTripState;
+	private String endTripCountry;
 	private String endTripPin;
 	private String carNumber;
 	private String carMake;
 	private String carModel;
 
+	
 	public int getId() {
 		return id;
 	}
@@ -157,5 +162,39 @@ public class TripFormData {
 	public void setEndTripPin(String endTripPin) {
 		this.endTripPin = endTripPin;
 	}
+
+	public String getStartTripState() {
+		return startTripState;
+	}
+
+	public void setStartTripState(String startTripState) {
+		this.startTripState = startTripState;
+	}
+
+	public String getStartTripCountry() {
+		return startTripCountry;
+	}
+
+	public void setStartTripCountry(String startTripCountry) {
+		this.startTripCountry = startTripCountry;
+	}
+
+	public String getEndTripState() {
+		return endTripState;
+	}
+
+	public void setEndTripState(String endTripState) {
+		this.endTripState = endTripState;
+	}
+
+	public String getEndTripCountry() {
+		return endTripCountry;
+	}
+
+	public void setEndTripCountry(String endTripCountry) {
+		this.endTripCountry = endTripCountry;
+	}
+	
+	
 
 }
