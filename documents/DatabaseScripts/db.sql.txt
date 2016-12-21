@@ -5,7 +5,7 @@ CREATE TABLE `drive_deliver`.`user` (
   `type_of_user` varchar(45) DEFAULT NULL,
   `username` varchar(45) NOT NULL unique,
   `password` varachar(400) NOT NULL,
-  PRIMARY KEY (`user_id`,`usernaem`)
+  PRIMARY KEY (`user_id`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `drive_deliver`.`trip` (
